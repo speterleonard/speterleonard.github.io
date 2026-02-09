@@ -4,77 +4,80 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Peter Leonard — Portfolio</title>
-  <meta name="description" content="Peter Leonard — Systems Engineer / IT Ops — portfolio" />
-  <meta property="og:title" content="Peter Leonard — Portfolio" />
-  <meta property="og:description" content="Systems Engineer / IT Operations — projects, skills, contact" />
+  <meta name="description" content="Peter Leonard — Systems Engineer · Platform Automation & Infrastructure" />
   <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b1220; --card:#0f172a; --muted:#9aa4b2; --accent:#06b6d4;
-      --glass: rgba(255,255,255,0.04);
-      --radius:14px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --bg:#071022; --card:#0f172a; --muted:#9aa4b2; --accent:#06b6d4; --glass: rgba(255,255,255,0.04);
+      --radius:14px; --glass-2: rgba(255,255,255,0.02);
       color-scheme: dark;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
+    /* Basic reset */
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{
-      margin:0; background:linear-gradient(180deg,#071022 0%, #071827 100%);
-      color: #e6eef6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      line-height:1.45; padding:32px;
-    }
-
-    .container{max-width:1000px;margin:0 auto;display:grid;gap:28px;}
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;gap:14px;align-items:center}
-    .logo{
-      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);
-      display:grid;place-items:center;font-weight:700;color:#06202a;font-size:20px;
-      box-shadow: 0 6px 20px rgba(3,7,18,0.6);
-    }
-    nav a{color:var(--muted);text-decoration:none;margin-left:16px;font-size:15px}
-    nav a:hover{color:var(--accent)}
-
+    body{margin:0;background:linear-gradient(180deg,#04101a 0%, #071827 100%);color:#e6eef6;line-height:1.45;padding:28px;}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;display:grid;gap:28px}
+    header{position:sticky;top:18px;z-index:40;background:transparent;padding:8px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:grid;place-items:center;font-weight:800;color:#042026;font-size:18px;box-shadow:0 8px 30px rgba(6,182,212,0.08)}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px;border-radius:8px;font-size:15px}
+    nav a:hover, nav a.active{color:var(--accent);background:var(--glass-2)}
     .hero{
-      background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
-      border-radius:var(--radius); padding:28px; display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;
-      box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+      background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:28px;border-radius:var(--radius);display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:center;
       border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 8px 28px rgba(2,6,23,0.6);
     }
-    .hero h1{margin:0;font-size:28px}
-    .hero p{margin:8px 0 0;color:var(--muted)}
-    .cta{display:flex;flex-direction:column;gap:8px;align-items:end}
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#042026;border-radius:10px;padding:10px 14px;font-weight:600;
-      text-decoration:none;box-shadow: 0 6px 18px rgba(6,182,212,0.12);
-    }
-    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:8px 12px;font-weight:600}
-
-    main{display:grid;gap:18px}
-    .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .hero h1{margin:0;font-size:30px;line-height:1.05}
+    .typing{color:var(--accent);font-weight:700}
+    .hero p{margin:10px 0 0;color:var(--muted)}
+    .cta-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#042026;border-radius:10px;padding:10px 14px;font-weight:700;text-decoration:none;box-shadow:0 10px 30px rgba(6,182,212,0.12)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600;padding:8px 12px}
     .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--glass)}
-    .card h3{margin:0 0 8px}
-    .project-grid{display:grid;gap:12px}
-
-    .skills{display:flex;gap:10px;flex-wrap:wrap}
+    main{display:grid;gap:18px}
+    .grid-2{display:grid;grid-template-columns:1fr 380px;gap:18px}
+    .project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .project{padding:14px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);cursor:pointer;border:1px solid rgba(255,255,255,0.02)}
+    .project h4{margin:0 0 6px}
+    .muted{color:var(--muted);font-size:14px}
+    .skills{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
     .skill{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
-
     footer{display:flex;justify-content:space-between;align-items:center;padding-top:8px;color:var(--muted);font-size:13px}
-    a.link-inline{color:var(--muted);text-decoration:none}
-    a.link-inline svg{vertical-align:middle;margin-right:8px}
 
-    /* Responsive */
-    @media (max-width:800px){
-      .hero{grid-template-columns:1fr; text-align:left}
-      .cards{grid-template-columns:1fr}
-      header{flex-direction:column;align-items:flex-start;gap:12px}
-      .cta{align-items:flex-start}
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(3,6,12,0.6);display:grid;place-items:center;padding:20px;z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+    .modal-backdrop.open{opacity:1;pointer-events:all}
+    .modal{max-width:920px;width:100%;background:linear-gradient(180deg,#071827 0%, #0b1724 100%);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+    .modal .close{float:right;background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer}
+
+    /* Contact form */
+    form{display:grid;gap:8px}
+    input,textarea{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);color:inherit;padding:10px;border-radius:8px;outline:none}
+    input:focus,textarea:focus{box-shadow:0 8px 20px rgba(6,182,212,0.06);border-color:rgba(6,182,212,0.14)}
+    textarea{min-height:120px;resize:vertical}
+
+    /* utilities & responsive */
+    .right{text-align:right}
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .project-grid{grid-template-columns:1fr}
+      header{position:static}
     }
 
-    /* subtle fade-in reveal */
-    .reveal{opacity:0;transform:translateY(8px);transition:transform .6s cubic-bezier(.2,.9,.3,1),opacity .6s}
+    /* reveal animations */
+    .reveal{opacity:0;transform:translateY(10px);transition:all .6s cubic-bezier(.2,.9,.3,1)}
     .reveal.visible{opacity:1;transform:none}
+    /* light mode */
+    :root.light{--bg:#f7fbff;--card:#ffffff;--muted:#506070;--accent:#0b5682;color-scheme:light}
+    body.light{background:linear-gradient(180deg,#f9fbff 0%, #f0f5fb 100%);color:#042026}
+    a.theme-toggle{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px;border-radius:10px}
   </style>
 </head>
 <body>
@@ -83,109 +86,244 @@
       <div class="brand">
         <div class="logo" aria-hidden="true">PL</div>
         <div>
-          <div style="font-weight:700;font-size:16px">Peter Leonard</div>
-          <div style="color:var(--muted);font-size:13px">Systems Engineer · IT Operations</div>
+          <div style="font-weight:800;font-size:16px">Peter Leonard</div>
+          <div class="muted" style="font-size:13px">Systems Engineer · Platform Automation</div>
         </div>
       </div>
+
       <nav aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" data-nav>About</a>
+        <a href="#projects" data-nav>Projects</a>
+        <a href="#contact" data-nav>Contact</a>
+        <a href="#" id="themeToggle" class="theme-toggle" title="Toggle light/dark" aria-pressed="false">Toggle theme</a>
       </nav>
     </header>
 
-    <section class="hero reveal" id="home">
+    <section class="hero reveal" id="home" role="region" aria-label="Intro">
       <div>
-        <h1>Hi — I'm Peter. I design resilient systems, automate boring work, and keep infrastructure humming.</h1>
-        <p>Experienced in cloud infrastructure, automation, observability and platform tooling. I enjoy building reliable systems and writing practical scripts to save time.</p>
-        <div style="margin-top:12px" class="skills" aria-hidden="false">
-          <span class="skill">Linux</span>
+        <h1>Hi — I'm Peter. <span class="typing" id="typing"></span></h1>
+        <p class="muted">I design resilient systems, automate repetitive work, and build observability and tooling that teams rely on.</p>
+
+        <div class="skills" aria-hidden="false">
           <span class="skill">GCP</span>
-          <span class="skill">Azure</span>
           <span class="skill">Terraform</span>
-          <span class="skill">PowerShell / Python</span>
+          <span class="skill">PowerShell</span>
+          <span class="skill">Python</span>
           <span class="skill">CI/CD</span>
+          <span class="skill">Observability</span>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn" href="#projects">View projects</a>
+          <a class="btn ghost" href="resume.pdf" download>Download resume</a>
+          <a class="btn ghost" href="https://github.com/YOUR_GITHUB" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/peter-leonard-35022aa4/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
 
-      <div class="cta" role="region" aria-label="Quick actions">
-        <a class="btn" href="#projects">View projects</a>
-
-        <!-- LinkedIn button uses the user's provided profile -->
-        <a class="btn secondary" href="https://www.linkedin.com/in/peter-leonard-35022aa4/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
-          <!-- LinkedIn SVG icon -->
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-            <path fill="currentColor" d="M4.98 3.5C4.98 4.88071 3.88071 6 2.5 6C1.11929 6 0 4.88071 0 3.5C0 2.11929 1.11929 1 2.5 1C3.88071 1 4.98 2.11929 4.98 3.5ZM.22 8.99H4.78V24H.22zM8.99 8.99H13.36V11.1H13.44C14.16 9.79 15.98 8.68 18.47 8.68C23.42 8.68 24 11.86 24 16.27V24H19.44V16.95C19.44 15.24 19.41 12.98 16.82 12.98C14.2 12.98 13.8 14.86 13.8 16.82V24H8.99z"/>
-          </svg>
-          LinkedIn
-        </a>
-      </div>
+      <aside class="card" aria-hidden="false">
+        <h3 style="margin:0 0 8px">Quick facts</h3>
+        <div class="muted">Location: Berlin, DE · Open to remote / hybrid roles</div>
+        <hr style="border:none;border-top:1px solid var(--glass);margin:12px 0">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <div style="min-width:120px">
+            <div style="font-weight:700">10+ yrs</div>
+            <div class="muted" style="font-size:13px">Infrastructure & Automation</div>
+          </div>
+          <div style="min-width:120px">
+            <div style="font-weight:700">SRE-ish</div>
+            <div class="muted" style="font-size:13px">Incident response & runbooks</div>
+          </div>
+        </div>
+        <div style="margin-top:14px">
+          <a class="btn" href="#contact">Let's talk</a>
+        </div>
+      </aside>
     </section>
 
     <main>
       <section id="about" class="card reveal">
         <h3>About</h3>
-        <p style="color:var(--muted);margin-top:6px">
-          I'm an operations-minded systems engineer who loves reducing toil with automation and improving reliability through monitoring, IaC, and careful runbooks. I thrive on debugging tricky incidents and helping teams get back to building faster.
+        <p class="muted" style="margin-top:8px">
+          I'm an operations-minded systems engineer who reduces toil with automation and improves reliability through monitoring, IaC and careful runbooks. I like pragmatic tooling and building reusable modules that teams can adopt.
         </p>
       </section>
 
-      <section id="projects" class="card reveal">
-        <h3>Projects</h3>
-        <div class="project-grid" style="margin-top:10px;">
-          <!-- Replace these example project cards with your real projects -->
-          <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;">
-            <strong>Platform Automation Toolkit</strong>
-            <div style="color:var(--muted);font-size:13px;margin-top:6px">
-              A set of scripts and Terraform modules to provision and manage cross-project IAM, monitoring and alerting on GCP.
+      <div class="grid-2">
+        <section id="projects" class="card reveal" aria-labelledby="projectsTitle">
+          <h3 id="projectsTitle">Selected projects</h3>
+          <div style="color:var(--muted);margin-top:8px">Click a project to view details and links.</div>
+
+          <div class="project-grid" style="margin-top:14px">
+            <!-- Project 1 -->
+            <div class="project" data-project='{"title":"Platform Automation Toolkit","desc":"Terraform modules + scripts to provision cross-project IAM, monitoring and alerting on GCP.","links":[{"label":"Repo","url":"https://github.com/YOUR_GITHUB/platform-automation"}]}'>
+              <h4>Platform Automation Toolkit</h4>
+              <div class="muted">Terraform · GCP · CI/CD</div>
             </div>
-            <div style="margin-top:8px"><a class="link-inline" href="#" onclick="return false;">View on GitHub →</a></div>
-          </div>
 
-          <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;">
-            <strong>Incident Runbooks</strong>
-            <div style="color:var(--muted);font-size:13px;margin-top:6px">
-              Curated runbooks & PagerDuty playbooks used for major incident response and postmortem training.
+            <!-- Project 2 -->
+            <div class="project" data-project='{"title":"Incident Runbooks","desc":"Curated runbooks & PagerDuty playbooks used for major incident response and postmortem training.","links":[{"label":"Notes","url":"#"}]}'>
+              <h4>Incident Runbooks</h4>
+              <div class="muted">Runbooks · On-call tooling</div>
             </div>
-            <div style="margin-top:8px"><a class="link-inline" href="#" onclick="return false;">Read notes →</a></div>
+
+            <!-- Project 3 -->
+            <div class="project" data-project='{"title":"Service Health Dashboard","desc":"Power BI dashboard that aggregates service status and triggers Slack alerts for incidents.","links":[{"label":"Demo","url":"#"}]}'>
+              <h4>Service Health Dashboard</h4>
+              <div class="muted">Power BI · Slack · Monitoring</div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project" data-project='{"title":"CI Orbs & Private Registry","desc":"CircleCI orb & publishing flows to Verdaccio / Artifact Registry for internal packages.","links":[{"label":"Docs","url":"#"}]}'>
+              <h4>CI Orbs & Private Registry</h4>
+              <div class="muted">CircleCI · npm · Artifact Registry</div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="contact" class="card reveal">
-        <h3>Contact</h3>
-        <p style="color:var(--muted);margin-top:6px">I'm open to contract and full-time opportunities. You can reach me on LinkedIn or by email.</p>
+        <aside class="card reveal">
+          <h3>Contact & availability</h3>
+          <p class="muted" style="margin-top:8px">Open to contract and full-time opportunities. Prefer backend/platform roles with autonomy.</p>
 
-        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
-          <a class="btn" href="mailto:peter.selvadurai@bonial.com">Email me</a>
-          <a class="btn secondary" href="https://www.linkedin.com/in/peter-leonard-35022aa4/" target="_blank" rel="noopener noreferrer">
-            Open LinkedIn
-          </a>
-        </div>
-      </section>
+          <!-- Contact form (replace FORM_ENDPOINT with your provider endpoint e.g. Formspree, Getform, Netlify forms) -->
+          <form id="contactForm" action="#" method="POST" onsubmit="submitForm(event)">
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="email" name="email" placeholder="Your email" required />
+            <input type="text" name="subject" placeholder="Subject" />
+            <textarea name="message" placeholder="Message" required></textarea>
+
+            <div style="display:flex;gap:8px;justify-content:space-between;align-items:center">
+              <button class="btn" type="submit">Send message</button>
+              <div class="muted" style="font-size:13px">Or email: <a href="mailto:peter.selvadurai@bonial.com">peter.selvadurai@bonial.com</a></div>
+            </div>
+            <div id="formStatus" class="muted" style="margin-top:8px;display:none"></div>
+          </form>
+        </aside>
+      </div>
     </main>
 
     <footer class="reveal">
-      <div>Made with ☕ · <span style="color:var(--muted)">Built for GitHub Pages</span></div>
+      <div>Made with ☕ · <span class="muted">Built for GitHub Pages</span></div>
       <div>© <span id="year"></span> Peter Leonard</div>
     </footer>
   </div>
 
+  <!-- Project detail modal -->
+  <div id="modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" role="document">
+      <button class="close" aria-label="Close modal" onclick="closeModal()">✕</button>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc" class="muted" style="margin-top:8px"></p>
+      <div id="modalLinks" style="margin-top:12px"></div>
+    </div>
+  </div>
+
   <script>
-    // small helpers: set year, reveal on load
+    // small utilities
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    function revealAll(){
-      document.querySelectorAll('.reveal').forEach((el,i)=>{
-        setTimeout(()=>el.classList.add('visible'), 80 * i);
-      });
+    // Typing animation (simple)
+    const typingEl = document.getElementById('typing');
+    const phrases = ['Automation engineer', 'Infrastructure nerd', 'SRE-ish systems engineer', 'Terraform fan'];
+    let pi = 0, ci = 0, forward = true;
+    function tick(){
+      const p = phrases[pi];
+      typingEl.textContent = p.slice(0, ci);
+      if(forward) { ci++; if(ci > p.length){ forward = false; setTimeout(tick, 900); return; } }
+      else { ci--; if(ci < 0){ forward = true; pi = (pi+1)%phrases.length; } }
+      setTimeout(tick, forward ? 80 : 40);
     }
-    window.addEventListener('load', revealAll);
+    tick();
 
-    // keyboard accessible: focus outline improvements
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Tab') document.documentElement.style.scrollBehavior = 'smooth';
+    // Reveal on scroll
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, {threshold: 0.12});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Nav active state smooth scroll
+    const navLinks = document.querySelectorAll('[data-nav]');
+    navLinks.forEach(a => a.addEventListener('click', e=>{
+      e.preventDefault();
+      const id = a.getAttribute('href');
+      document.querySelector(id).scrollIntoView({behavior:'smooth',block:'start'});
+      history.replaceState(null,'',id);
+    }));
+
+    // Projects -> modal
+    function openModal(data){
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalDesc').textContent = data.desc;
+      const links = document.getElementById('modalLinks');
+      links.innerHTML = '';
+      (data.links||[]).forEach(l=>{
+        const el = document.createElement('a');
+        el.href = l.url; el.target = '_blank'; el.rel = 'noopener noreferrer';
+        el.className = 'btn ghost';
+        el.style.marginRight = '8px'; el.textContent = l.label;
+        links.appendChild(el);
+      });
+      const mb = document.getElementById('modal');
+      mb.classList.add('open'); mb.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      const mb = document.getElementById('modal');
+      mb.classList.remove('open'); mb.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.project').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        const data = JSON.parse(el.getAttribute('data-project'));
+        openModal(data);
+      });
     });
+    document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') closeModal(); });
+
+    // Theme toggle (light/dark)
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', (e)=>{
+      e.preventDefault();
+      document.documentElement.classList.toggle('light');
+      document.body.classList.toggle('light');
+      const pressed = document.documentElement.classList.contains('light');
+      themeToggle.setAttribute('aria-pressed', String(pressed));
+    });
+
+    // Simple contact form handler (no backend)
+    async function submitForm(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const status = document.getElementById('formStatus');
+      status.style.display = 'block';
+      status.textContent = 'Sending…';
+
+      // OPTION 1 (recommended): Use a form endpoint (Formspree/Getform/Netlify). Replace FORM_ENDPOINT string below:
+      const FORM_ENDPOINT = ''; // <-- set to your form provider endpoint
+      if(FORM_ENDPOINT){
+        try{
+          const res = await fetch(FORM_ENDPOINT, {method:'POST', body: data});
+          if(res.ok){ status.textContent = 'Thanks — message sent!'; form.reset(); }
+          else{ status.textContent = 'There was an issue sending the message.'; }
+        }catch(err){ status.textContent = 'Network error sending message.'; }
+        return;
+      }
+
+      // OPTION 2 (fallback): open mail client
+      const name = encodeURIComponent(data.get('name') || '');
+      const email = encodeURIComponent(data.get('email') || '');
+      const subject = encodeURIComponent(data.get('subject') || 'Website contact');
+      const message = encodeURIComponent(data.get('message') || '');
+      const mailto = `mailto:peter.selvadurai@bonial.com?subject=${subject}&body=From:%20${name}%20(${email})%0A%0A${message}`;
+      window.location.href = mailto;
+      status.textContent = 'Opening mail client…';
+    }
+
+    // accessibility: close modal with escape
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
   </script>
 </body>
 </html>
