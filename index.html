@@ -4,15 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Peter Leonard — Portfolio</title>
-  <meta name="description" content="Peter Leonard — Senior Systems Administrator" />
+  <meta name="description" content="Peter Leonard — Senior Systems Engineer · IT Operations · Automation" />
   <meta name="theme-color" content="#0f172a" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --card:#0f172a; --muted:#9aa4b2; --accent:#06b6d4; --glass: rgba(255,255,255,0.04);
-      --radius:14px; --glass-2: rgba(255,255,255,0.02);
+      --card:#0f172a;
+      --muted:#9aa4b2;
+      --accent:#06b6d4;
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius:14px;
       color-scheme: dark;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       scroll-behavior:smooth;
@@ -28,6 +32,7 @@
     a{color:inherit}
     .container{max-width:1100px;margin:0 auto;display:grid;gap:18px}
 
+    /* HEADER */
     header{
       position:sticky; top:16px; z-index:40;
       padding:12px 14px; border-radius:14px;
@@ -38,18 +43,44 @@
       -webkit-backdrop-filter: blur(10px);
       box-shadow: 0 10px 30px rgba(2,6,23,0.45);
     }
+
     .brand{display:flex;gap:12px;align-items:center}
     .logo{
       width:56px;height:56px;border-radius:12px;
       background:linear-gradient(135deg,var(--accent),#7c3aed);
       display:grid;place-items:center;font-weight:800;color:#042026;font-size:18px;
-      box-shadow:0 8px 30px rgba(6,182,212,0.08)
+      box-shadow:0 8px 30px rgba(6,182,212,0.08);
+      flex:0 0 auto;
     }
+
+    /* ✅ CIRCULAR PROFILE PHOTO (ONLY in header logo) */
+    .logo.avatar{
+      background:none;        /* remove gradient */
+      padding:0;
+      overflow:hidden;
+      border-radius:50%;      /* circle */
+      box-shadow:
+        0 8px 30px rgba(6,182,212,0.25),
+        inset 0 0 0 2px rgba(255,255,255,0.25);
+    }
+    .logo.avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      border-radius:50%;
+      transition:transform .25s ease;
+    }
+    .logo.avatar:hover img{ transform:scale(1.05); }
+
     nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
     nav a{
-      color:var(--muted); text-decoration:none;
-      padding:8px 10px; border-radius:10px;
-      font-size:14px; line-height:1;
+      color:var(--muted);
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:10px;
+      font-size:14px;
+      line-height:1;
     }
     nav a:hover, nav a.active{color:var(--accent);background:var(--glass-2)}
     a.theme-toggle{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 10px;border-radius:10px}
@@ -57,7 +88,6 @@
     section{scroll-margin-top:92px;}
     .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--glass)}
     .muted{color:var(--muted);font-size:14px}
-    .pill{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:7px 10px;border-radius:999px;color:var(--muted);font-size:13px}
     .btn{
       display:inline-flex;align-items:center;gap:10px;
       background:var(--accent);color:#042026;border-radius:10px;
@@ -67,7 +97,9 @@
     }
     .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600;padding:8px 12px}
 
+    /* HERO */
     .hero{
+      margin-top:6px;
       background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
       padding:24px;border-radius:var(--radius);
       display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start;
@@ -76,12 +108,15 @@
     }
     .hero h1{margin:0;font-size:30px;line-height:1.05}
     .typing{color:var(--accent);font-weight:700}
-    .hero p{margin:10px 0 0;color:var(--muted)}
+    .hero p{margin:10px 0 0}
     .cta-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
     .skills{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
     .skill{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
 
+    /* LAYOUT */
     .grid-2{display:grid;grid-template-columns:1fr 380px;gap:18px}
+
+    /* PROJECTS */
     .project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
     .project{
       padding:14px;border-radius:10px;
@@ -91,7 +126,15 @@
     .project:hover{border-color:rgba(6,182,212,0.22)}
     .project h4{margin:0 0 6px}
 
-    /* Certificates */
+    /* EXPERIENCE */
+    .timeline{display:grid;gap:10px;margin-top:10px}
+    .job{padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02)}
+    .job h4{margin:0}
+    .job .meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:4px}
+    .job ul{margin:10px 0 0;padding-left:18px;color:#cfe0f0}
+    .job li{margin:6px 0}
+
+    /* CERTIFICATES */
     .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:10px}
     .filters{display:flex;gap:8px;flex-wrap:wrap}
     .filter{
@@ -130,15 +173,7 @@
     .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
     .tag{font-size:12px;color:var(--muted);background:rgba(255,255,255,0.03);padding:4px 8px;border-radius:999px}
 
-    /* Timeline */
-    .timeline{display:grid;gap:10px;margin-top:10px}
-    .job{padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02)}
-    .job h4{margin:0}
-    .job .meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:4px}
-    .job ul{margin:10px 0 0;padding-left:18px;color:#cfe0f0}
-    .job li{margin:6px 0}
-
-    /* Modal */
+    /* MODAL */
     .modal-backdrop{
       position:fixed;inset:0;background:rgba(3,6,12,0.6);
       display:grid;place-items:center;padding:20px;z-index:60;
@@ -166,9 +201,7 @@
       header{position:static}
       section{scroll-margin-top:20px;}
     }
-    @media (max-width:600px){
-      body{padding:16px}
-    }
+    @media (max-width:600px){ body{padding:16px} }
 
     /* light mode */
     :root.light{--card:#ffffff;--muted:#506070;--accent:#0b5682;color-scheme:light}
@@ -178,7 +211,6 @@
       border: 1px solid rgba(2,6,23,0.08);
       box-shadow: 0 10px 30px rgba(2,6,23,0.10);
     }
-    :root.light a.theme-toggle{border-color:rgba(2,6,23,0.12)}
   </style>
 </head>
 
@@ -186,9 +218,10 @@
   <div class="container">
     <header>
       <div class="brand">
+        <!-- ✅ Put your photo here: assets/profile.jpg -->
         <div class="logo avatar">
-  <img src="assets/profile.png" alt="Peter Leonard profile photo" />
-</div>
+          <img src="assets/profile.jpg" alt="Peter Leonard profile photo">
+        </div>
         <div>
           <div style="font-weight:800;font-size:16px">Peter Leonard</div>
           <div class="muted" style="font-size:13px">Senior Systems Engineer</div>
@@ -197,38 +230,40 @@
 
       <nav aria-label="Main navigation">
         <a href="#home" data-nav class="active">Home</a>
-        <a href="#competencies" data-nav>Skills</a>
+        <a href="#skills" data-nav>Skills</a>
         <a href="#experience" data-nav>Experience</a>
+        <a href="#projects" data-nav>Projects</a>
         <a href="#certificates" data-nav>Certificates</a>
         <a href="#education" data-nav>Education</a>
         <a href="#contact" data-nav>Contact</a>
-        <a href="#" id="themeToggle" class="theme-toggle" title="Toggle light/dark" aria-pressed="false">Toggle theme</a>
+        <a href="#" id="themeToggle" class="theme-toggle" aria-pressed="false">Toggle theme</a>
       </nav>
     </header>
 
     <!-- HERO -->
-    <section class="hero reveal" id="home" aria-label="Intro">
+    <section class="hero reveal" id="home">
       <div>
         <h1>Hi — I'm Peter. <span class="typing" id="typing"></span></h1>
         <p class="muted">
-          Results-driven Senior Systems Engineer with expertise in cloud platforms, automation, and infrastructure management.
+          Senior Systems Engineer focused on IT Operations, automation, and reliable infrastructure.
         </p>
 
         <div class="skills">
+          <span class="skill">IT Operations</span>
+          <span class="skill">Incident Management</span>
           <span class="skill">Azure</span>
           <span class="skill">AWS</span>
-          <span class="skill">Microsoft 365</span>
           <span class="skill">Terraform</span>
           <span class="skill">PowerShell</span>
           <span class="skill">Python</span>
           <span class="skill">VMware</span>
-          <span class="skill">Okta</span>
-          <span class="skill">Google Workspace</span>
+          <span class="skill">Microsoft 365</span>
         </div>
 
         <div class="cta-row">
           <a class="btn" href="#experience">View experience</a>
           <a class="btn ghost" href="resume.pdf" download>Download resume</a>
+          <a class="btn ghost" href="https://github.com/YOUR_GITHUB" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a class="btn ghost" href="https://www.linkedin.com/in/peter-leonard-35022aa4/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
@@ -236,31 +271,22 @@
       <aside class="card">
         <h3 style="margin:0 0 8px">Quick info</h3>
         <div class="muted">Berlin, Germany</div>
-        <div class="muted" style="margin-top:6px">Email: peterleonardmit@gmail.com</div>
+        <div class="muted" style="margin-top:6px">Email: <a href="mailto:peterleonardmit@gmail.com">peterleonardmit@gmail.com</a></div>
         <div class="muted" style="margin-top:6px">Phone: +49-17686499345</div>
         <hr style="border:none;border-top:1px solid var(--glass);margin:12px 0">
-        <div class="pill">Acted as IT Ops technical lead (mentored 6 engineers)</div>
+        <div class="muted">IT Operations lead experience · mentoring & process improvements</div>
       </aside>
     </section>
 
-    <!-- OBJECTIVE / ABOUT -->
-    <section class="card reveal" id="about">
-      <h3 style="margin:0 0 8px">Objective</h3>
-      <p class="muted" style="margin:0">
-        Passionate about scalability, reliability, and automation in modern IT environments, with hands-on leadership and mentoring experience. Results-driven Senior Systems Engineer with expertise in cloud platforms, automation, and infrastructure management. Passionate about scalability, reliability, and automation in modern IT environments. For nearly a year, I have been acting as the technical lead for an IT Operations team in the absence of a formal team lead, overseeing and mentoring six IT support engineers while ensuring continuity of service and delivery. Seeking to leverage my experience in cloud infrastructure, security, and team leadership to drive operational excellence.
-      </p>
-    </section>
-
-    <!-- COMPETENCIES -->
-    <section class="card reveal" id="competencies">
+    <!-- SKILLS -->
+    <section class="card reveal" id="skills">
       <h3 style="margin:0 0 8px">Core competencies</h3>
-
       <div class="grid-2" style="margin-top:12px">
         <div class="card" style="background:rgba(255,255,255,0.02)">
           <h4 style="margin:0 0 8px">Platforms & tooling</h4>
           <ul class="muted" style="margin:0;padding-left:18px">
-            <li>Cloud: Microsoft Azure, AWS, Microsoft 365, Azure AD (AAD), Google Workspace, Okta, Slack</li>
-            <li>Virtualization: VMware vSphere, vRealize Automation, NSX</li>
+            <li>Cloud: Azure, AWS, Microsoft 365, Azure AD, Google Workspace</li>
+            <li>Virtualization: VMware vSphere, vRA, NSX</li>
             <li>DevOps: Terraform, Jenkins, Docker, Kubernetes</li>
             <li>Monitoring: Site24x7, Datadog</li>
           </ul>
@@ -270,10 +296,10 @@
           <h4 style="margin:0 0 8px">Systems & operations</h4>
           <ul class="muted" style="margin:0;padding-left:18px">
             <li>Scripting: PowerShell, PowerCLI, Python</li>
-            <li>OS: Windows Servers, Linux (RHEL, Ubuntu), macOS</li>
-            <li>IT Services: Active Directory, DNS, DHCP, Exchange</li>
-            <li>Endpoint: Sophos, MS Defender, Intune, SCCM</li>
-            <li>Backup/DR: NinjaOne, Acronis, Veeam, ShadowProtect</li>
+            <li>OS: Windows Server, Linux (RHEL/Ubuntu), macOS</li>
+            <li>Services: AD, DNS, DHCP, Exchange</li>
+            <li>Endpoint: Intune, SCCM, Defender, Sophos</li>
+            <li>Backup/DR: Veeam, Acronis, NinjaOne</li>
           </ul>
         </div>
       </div>
@@ -286,50 +312,78 @@
         <div class="job">
           <h4>Bonial International GmbH — Berlin</h4>
           <div class="meta">
-            <span>Aug 2022 – Present</span>
-            <span>•</span>
-            <span>Senior System Administrator</span>
+            <span>Aug 2022 – Present</span><span>•</span><span>Senior System Administrator</span>
           </div>
-          <div class="muted" style="margin-top:10px"></div>
+          <ul>
+            <li>Led IT Operations activities and mentored team members; improved workflows and reliability.</li>
+            <li>Handled automation, identity and endpoint operations, and platform tooling improvements.</li>
+          </ul>
         </div>
 
         <div class="job">
           <h4>CSI Interfusion Inc — Bangalore, India</h4>
           <div class="meta">
-            <span>May 2020 – Mar 2022</span>
-            <span>•</span>
-            <span>Senior System Engineer</span>
-            <span>•</span>
-            <span>Client: Microsoft</span>
+            <span>May 2020 – Mar 2022</span><span>•</span><span>Senior System Engineer (Client: Microsoft)</span>
           </div>
-          <div class="muted" style="margin-top:10px"></div>
+          <ul>
+            <li>Supported enterprise infrastructure operations with automation and operational improvements.</li>
+          </ul>
         </div>
 
         <div class="job">
           <h4>Adventus Singapore Pte Ltd — Singapore</h4>
           <div class="meta">
-            <span>Aug 2018 – Jan 2020</span>
-            <span>•</span>
-            <span>IT Systems Engineer</span>
+            <span>Aug 2018 – Jan 2020</span><span>•</span><span>IT Systems Engineer</span>
           </div>
-          <div class="muted" style="margin-top:10px"></div>
+          <ul>
+            <li>Managed IT systems, endpoint operations, and platform reliability initiatives.</li>
+          </ul>
         </div>
 
         <div class="job">
           <h4>Cognizant Technology Solutions — Bangalore, India</h4>
           <div class="meta">
-            <span>May 2016 – Aug 2018</span>
-            <span>•</span>
-            <span>Senior Systems Engineer</span>
+            <span>May 2016 – Aug 2018</span><span>•</span><span>Senior Systems Engineer</span>
           </div>
-          <div class="muted" style="margin-top:10px"></div>
+          <ul>
+            <li>Worked on systems engineering, automation scripts, and operations support.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="card reveal" id="projects">
+      <h3 style="margin:0 0 8px">Selected projects</h3>
+      <div class="muted">Click a project to view details and links.</div>
+
+      <div class="project-grid">
+        <div class="project" data-project='{"title":"IT Ops Automation Toolkit","desc":"PowerShell/Python automation for repetitive IT operations tasks (user lifecycle, access, reporting).","links":[{"label":"Repo","url":"https://github.com/YOUR_GITHUB"}]}'>
+          <h4>IT Ops Automation Toolkit</h4>
+          <div class="muted">PowerShell · Python · Automation</div>
+        </div>
+
+        <div class="project" data-project='{"title":"Service Health Dashboard","desc":"Aggregated SaaS status and monitoring signals into a single view for operations.","links":[{"label":"Notes","url":"#"}]}'>
+          <h4>Service Health Dashboard</h4>
+          <div class="muted">Monitoring · Alerting · Ops</div>
+        </div>
+
+        <div class="project" data-project='{"title":"Identity & Endpoint Operations","desc":"Improved device compliance and access workflows across identity and endpoint management.","links":[{"label":"Notes","url":"#"}]}'>
+          <h4>Identity & Endpoint Operations</h4>
+          <div class="muted">Intune · Azure AD · Security</div>
+        </div>
+
+        <div class="project" data-project='{"title":"Infrastructure-as-Code Patterns","desc":"Reusable Terraform patterns for consistent infra provisioning and governance.","links":[{"label":"Repo","url":"#"}]}'>
+          <h4>Infrastructure-as-Code Patterns</h4>
+          <div class="muted">Terraform · Cloud · Governance</div>
         </div>
       </div>
     </section>
 
     <!-- CERTIFICATES -->
     <section class="card reveal" id="certificates">
-      <h3 style="margin:0 0 6px">IT certifications</h3>
+      <h3 style="margin:0 0 6px">Certificates</h3>
+      <div class="muted">Click a certificate to view details. Add proof/verify links anytime.</div>
 
       <div class="toolbar">
         <div class="filters">
@@ -345,9 +399,7 @@
 
       <div class="cert-grid" id="certGrid"></div>
       <div class="muted" id="certEmpty" style="display:none;margin-top:12px">No certificates match your filters.</div>
-
-      <div class="muted" style="margin-top:12px">
-      </div>
+      <div class="muted" style="margin-top:12px">Put badge images in <code>assets/badges/</code> (optional).</div>
     </section>
 
     <!-- EDUCATION -->
@@ -357,15 +409,15 @@
         <div style="display:grid;gap:10px">
           <div>
             <div style="font-weight:800">B.Tech (ECE) — Pondicherry University</div>
-            <div class="muted">Manakula Vinayagar Institute of Technology · 2015 · 87.40%</div>
+            <div class="muted">Manakula Vinayagar Institute of Technology · 2015</div>
           </div>
           <div>
             <div style="font-weight:800">HSC — State Board</div>
-            <div class="muted">Seventh Day Adventist Higher Secondary School · 2011 · 88.41%</div>
+            <div class="muted">Seventh Day Adventist Higher Secondary School · 2011</div>
           </div>
           <div>
             <div style="font-weight:800">SSLC — State Board</div>
-            <div class="muted">Seventh Day Adventist Higher Secondary School · 2009 · 92.20%</div>
+            <div class="muted">Seventh Day Adventist Higher Secondary School · 2009</div>
           </div>
         </div>
       </div>
@@ -375,15 +427,21 @@
     <section class="card reveal" id="contact">
       <h3 style="margin:0 0 8px">Contact</h3>
       <div class="muted" style="margin-bottom:12px">
-        Berlin, Germany · peterleonardmit@gmail.com · +49-17686499345 :contentReference[oaicite:26]{index=26}
+        Berlin, Germany · <a href="mailto:peterleonardmit@gmail.com">peterleonardmit@gmail.com</a> · +49-17686499345
       </div>
 
       <div class="grid-2">
         <div class="card" style="background:rgba(255,255,255,0.02)">
           <h4 style="margin:0 0 8px">Links</h4>
           <div class="muted" style="display:grid;gap:8px">
-            <div>LinkedIn: <a href="https://www.linkedin.com/in/peter-leonard-35022aa4/" target="_blank" rel="noopener noreferrer">/peter-leonard-35022aa4</a> :contentReference[oaicite:27]{index=27}</div>
-            <div>Email: <a href="mailto:peterleonardmit@gmail.com">peterleonardmit@gmail.com</a> :contentReference[oaicite:28]{index=28}</div>
+            <div>LinkedIn:
+              <a href="https://www.linkedin.com/in/peter-leonard-35022aa4/" target="_blank" rel="noopener noreferrer">
+                peter-leonard-35022aa4
+              </a>
+            </div>
+            <div>GitHub:
+              <a href="https://github.com/YOUR_GITHUB" target="_blank" rel="noopener noreferrer">YOUR_GITHUB</a>
+            </div>
           </div>
         </div>
 
@@ -397,7 +455,7 @@
 
             <div style="display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-top:8px">
               <button class="btn" type="submit">Send message</button>
-              <div class="muted" style="font-size:13px">Mailto fallback (no backend)</div>
+              <div class="muted" style="font-size:13px">Opens your mail client (no backend)</div>
             </div>
             <div id="formStatus" class="muted" style="margin-top:8px;display:none"></div>
           </form>
@@ -406,12 +464,12 @@
     </section>
 
     <footer class="reveal">
-      <div>Made with ☕ · <span class="muted">Single-page GitHub Pages</span></div>
+      <div>Made with ☕ · <span class="muted">GitHub Pages</span></div>
       <div>© <span id="year"></span> Peter Leonard</div>
     </footer>
   </div>
 
-  <!-- Shared modal (projects + certs) -->
+  <!-- MODAL -->
   <div id="modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal" role="document">
       <button class="close" aria-label="Close modal" onclick="closeModal()">✕</button>
@@ -424,33 +482,33 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Typing animation
+    // Typing animation (IT Ops phrases)
     const typingEl = document.getElementById('typing');
-    const phrases = ['Senior Systems Admin', 'Scaling IT Operations', 'Cloud & Infrastructure', 'Workflow Automation', `On-call & Incident Management`, `Zero-Touch Operations`];
+    const phrases = [
+      'Production Operations',
+      'Incident Response & Recovery',
+      'Operational Reliability',
+      'Reducing Operational Toil'
+    ];
     let pi = 0, ci = 0, forward = true;
     function tick(){
       const p = phrases[pi];
       typingEl.textContent = p.slice(0, ci);
       if(forward) { ci++; if(ci > p.length){ forward = false; setTimeout(tick, 900); return; } }
       else { ci--; if(ci < 0){ forward = true; pi = (pi+1)%phrases.length; } }
-      setTimeout(tick, forward ? 60 : 30);
+      setTimeout(tick, forward ? 55 : 30);
     }
     tick();
 
     // Reveal on scroll
     const observer = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting) e.target.classList.add('visible');
-      });
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
     }, {threshold: 0.12});
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Active nav highlight (based on scroll)
+    // Active nav highlight (scroll)
     const navLinks = [...document.querySelectorAll('nav a[data-nav]')];
-    const sections = navLinks
-      .map(a => document.querySelector(a.getAttribute('href')))
-      .filter(Boolean);
-
+    const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
     const navObserver = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
@@ -500,7 +558,7 @@
       });
     });
 
-    // Certificates data (from resume list; add proof/verify links as you get them)
+    // Certificates data (edit links + badges anytime)
     const certs = [
       { title:"Microsoft Certified: Azure Fundamentals (AZ-900)", org:"Microsoft", category:["cloud"], tags:["Azure","Fundamentals"], badge:"assets/badges/az-900.png", desc:"Azure Fundamentals certification.", links:[] },
       { title:"AWS Certified Cloud Practitioner", org:"Amazon Web Services", category:["cloud"], tags:["AWS","Fundamentals"], badge:"assets/badges/aws-cloud-practitioner.png", desc:"AWS Cloud Practitioner certification.", links:[] },
@@ -547,11 +605,11 @@
           </div>
         `;
 
-        const modalData = {
-          title: c.title,
-          desc: c.desc || '',
-          links: (c.links && c.links.length) ? c.links : [{label:"No proof link yet", url:"#", primary:false}]
-        };
+        const links = (c.links && c.links.length)
+          ? c.links
+          : [{label:"No proof link yet", url:"#", primary:false}];
+
+        const modalData = { title: c.title, desc: c.desc || '', links };
 
         el.addEventListener('click', ()=>openModal(modalData));
         el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') openModal(modalData); });
@@ -584,7 +642,7 @@
     }
 
     // Contact: mailto fallback
-    async function submitForm(e){
+    function submitForm(e){
       e.preventDefault();
       const form = e.target;
       const data = new FormData(form);
