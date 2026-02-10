@@ -1,1 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Peter Leonard — Certificates</title>
+  <meta name="description" content="Certificates, badges and training — Peter Leonard" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#071022; --card:#0f172a; --muted:#9aa4b2; --accent:#06b6d4; --glass: rgba(255,255,255,0.04);
+      --radius:14px; --glass-2: rgba(255,255,255,0.02);
+      color-scheme: dark;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#04101a 0%, #071827 100%);color:#e6eef6;line-height:1.45;padding:28px;}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;display:grid;gap:18px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:grid;place-items:center;font-weight:800;color:#042026;font-size:18px}
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px}
+    nav a:hover, nav a.active{color:var(--accent);background:var(--glass-2)}
+    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--glass)}
+    .muted{color:var(--muted)}
+    .top{display:grid;gap:10px}
+
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .filters{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{
+      background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+      padding:7px 10px;border-radius:999px;color:var(--muted);cursor:pointer;font-size:13px
+    }
+    .pill.active{border-color:rgba(6,182,212,0.35);color:#dff9ff}
+    .search{min-width:220px;flex:1;max-width:360px}
+    input{
+      width:100%;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);
+      color:inherit;padding:10px 12px;border-radius:10px;outline:none
+    }
+    input:focus{border-color:rgba(6,182,212,0.2);box-shadow:0 10px 30px rgba(6,182,212,0.06)}
+
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .item{
+      padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
+      border:1px solid rgba(255,255,255,0.03);cursor:pointer;
+      transition:transform .15s ease, border-color .15s ease
+    }
+    .item:hover{transform:translateY(-2px);border-color:rgba(6,182,212,0.2)}
+    .row{display:flex;gap:12px;align-items:center}
+    .badge{
+      width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,0.03);
+      display:grid;place-items:center;overflow:hidden;flex:0 0 auto
+    }
+    .badge img{width:100%;height:100%;object-fit:contain;padding:8px}
+    .meta{display:grid;gap:2px}
+    .title{font-weight:800}
+    .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+    .tag{font-size:12px;color:var(--muted);background:rgba(255,255,255,0.03);padding:4px 8px;border-radius:999px}
+
+    footer{display:flex;justify-content:space-between;align-items:center;padding-top:8px;color:var(--muted);font-size:13px}
+
+    /* Modal */
+    .backdrop{position:fixed;inset:0;background:rgba(3,6,12,0.6);display:grid;place-items:center;padding:20px;z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+    .backdrop.open{opacity:1;pointer-events:all}
+    .modal{max-width:860px;width:100%;background:linear-gradient(180deg,#071827 0%, #0b1724 100%);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+    .close{float:right;background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer}
+    .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#042026;border-radius:10px;padding:10px 14px;font-weight:800;text-decoration:none}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600;padding:8px 12px}
+
+    @media (max-width:980px){ .grid{grid-template-columns:1fr} }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">PL</div>
+        <div>
+          <div style="font-weight:800">Peter Leonard</div>
+          <div class="muted" style="font-size:13px">Certificates & Badges</div>
+        </div>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="certificates.html" class="active">Certificates</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="card top">
+      <h2 style="margin:0">Certificates & badges</h2>
+      <div class="muted">A curated list of certifications, trainings and earned badges.</div>
+
+      <div class="toolbar">
+        <div class="filters" aria-label="Filters">
+          <button class="pill active" data-filter="all">All</button>
+          <button class="pill" data-filter="cloud">Cloud</button>
+          <button class="pill" data-filter="security">Security</button>
+          <button class="pill" data-filter="devops">DevOps</button>
+          <button class="pill" data-filter="training">Training</button>
+        </div>
+
+        <div class="search">
+          <input id="search" type="search" placeholder="Search (e.g. Azure, AWS, SRE…)" aria-label="Search certificates" />
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="grid" id="grid"></div>
+      <div class="muted" id="empty" style="display:none;margin-top:12px">No items match your filters.</div>
+    </section>
+
+    <footer>
+      <div>Tip: Put badge images in <span class="muted">/assets/badges</span> and certificate PDFs in <span class="muted">/assets/certs</span>.</div>
+      <div>© <span id="year"></span> Peter Leonard</div>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="backdrop" class="backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" role="document">
+      <button class="close" onclick="closeModal()" aria-label="Close">✕</button>
+      <h3 id="mTitle" style="margin:0"></h3>
+      <p id="mDesc" class="muted" style="margin-top:8px"></p>
+      <div id="mMeta" class="muted" style="margin-top:8px"></div>
+      <div id="mLinks" style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ADD / EDIT YOUR CERTS HERE
+    // badge: path to badge image (optional)
+    // proof: link to pdf/image (optional)
+    // verify: link to verification page (optional)
+    const items = [
+      {
+        title: "Azure Fundamentals (AZ-900)",
+        org: "Microsoft",
+        date: "2024",
+        category: ["cloud"],
+        tags: ["Azure", "Fundamentals"],
+        badge: "assets/badges/az-900.png",
+        desc: "Core cloud concepts, Azure services, security, privacy, pricing and support.",
+        proof: "assets/certs/az-900.pdf",
+        verify: ""
+      },
+      {
+        title: "AWS Solutions Architect Associate",
+        org: "Amazon Web Services",
+        date: "2023",
+        category: ["cloud"],
+        tags: ["AWS", "Architecture"],
+        badge: "assets/badges/aws-saa.png",
+        desc: "Designing secure, resilient, high-performing architectures on AWS.",
+        proof: "assets/certs/aws-saa.pdf",
+        verify: ""
+      },
+      {
+        title: "Security Training / Awareness",
+        org: "Internal / External",
+        date: "2025",
+        category: ["security","training"],
+        tags: ["Security", "Awareness"],
+        badge: "",
+        desc: "Security best practices, identity, phishing, and safe operations.",
+        proof: "",
+        verify: ""
+      },
+      {
+        title: "Terraform Associate (example)",
+        org: "HashiCorp",
+        date: "2024",
+        category: ["devops","cloud"],
+        tags: ["Terraform", "IaC"],
+        badge: "assets/badges/terraform.png",
+        desc: "Infrastructure as Code fundamentals and workflows with Terraform.",
+        proof: "",
+        verify: ""
+      }
+    ];
+
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty');
+    const search = document.getElementById('search');
+    let activeFilter = 'all';
+
+    function render(){
+      const q = (search.value || '').toLowerCase().trim();
+
+      const filtered = items.filter(it=>{
+        const matchesFilter = activeFilter === 'all' || (it.category || []).includes(activeFilter);
+        const hay = (it.title + " " + it.org + " " + (it.tags||[]).join(" ") + " " + (it.desc||"")).toLowerCase();
+        const matchesQuery = !q || hay.includes(q);
+        return matchesFilter && matchesQuery;
+      });
+
+      grid.innerHTML = "";
+      empty.style.display = filtered.length ? "none" : "block";
+
+      filtered.forEach(it=>{
+        const el = document.createElement('div');
+        el.className = 'item';
+        el.tabIndex = 0;
+        el.setAttribute('role','button');
+        el.setAttribute('aria-label', 'Open details for ' + it.title);
+
+        el.innerHTML = `
+          <div class="row">
+            <div class="badge" aria-hidden="true">
+              ${it.badge ? `<img src="${it.badge}" alt="">` : `<span class="muted" style="font-weight:800">★</span>`}
+            </div>
+            <div class="meta">
+              <div class="title">${it.title}</div>
+              <div class="muted">${it.org} · ${it.date || ''}</div>
+            </div>
+          </div>
+          <div class="tags">
+            ${(it.tags||[]).map(t=>`<span class="tag">${t}</span>`).join("")}
+          </div>
+        `;
+        el.addEventListener('click', ()=>openModal(it));
+        el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') openModal(it); });
+        grid.appendChild(el);
+      });
+    }
+
+    // Filters
+    document.querySelectorAll('[data-filter]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.getAttribute('data-filter');
+        render();
+      });
+    });
+
+    search.addEventListener('input', render);
+
+    // Modal
+    const backdrop = document.getElementById('backdrop');
+    const mTitle = document.getElementById('mTitle');
+    const mDesc = document.getElementById('mDesc');
+    const mMeta = document.getElementById('mMeta');
+    const mLinks = document.getElementById('mLinks');
+
+    function openModal(it){
+      mTitle.textContent = it.title;
+      mDesc.textContent = it.desc || '';
+      mMeta.textContent = `${it.org || ''}${it.date ? ' · ' + it.date : ''}`;
+      mLinks.innerHTML = "";
+
+      const links = [];
+      if(it.proof) links.push({label:"View certificate", url: it.proof, primary:true});
+      if(it.verify) links.push({label:"Verify", url: it.verify, primary:false});
+
+      if(!links.length){
+        const span = document.createElement('div');
+        span.className = 'muted';
+        span.textContent = 'No public link attached yet.';
+        mLinks.appendChild(span);
+      } else {
+        links.forEach(l=>{
+          const a = document.createElement('a');
+          a.href = l.url;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.className = l.primary ? 'btn' : 'btn ghost';
+          a.textContent = l.label;
+          mLinks.appendChild(a);
+        });
+      }
+
+      backdrop.classList.add('open');
+      backdrop.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(){
+      backdrop.classList.remove('open');
+      backdrop.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+
+    backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) closeModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+    render();
+    window.closeModal = closeModal;
+  </script>
+</body>
+</html>
 
