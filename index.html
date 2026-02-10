@@ -4,20 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Peter Leonard — Portfolio</title>
-  <meta name="description" content="Peter Leonard — Systems Engineer · Platform Automation & Infrastructure" />
+  <meta name="description" content="Peter Leonard — Senior Systems Engineer · Platform Automation" />
   <meta name="theme-color" content="#0f172a" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#071022; --card:#0f172a; --muted:#9aa4b2; --accent:#06b6d4; --glass: rgba(255,255,255,0.04);
+      --card:#0f172a; --muted:#9aa4b2; --accent:#06b6d4; --glass: rgba(255,255,255,0.04);
       --radius:14px; --glass-2: rgba(255,255,255,0.02);
       color-scheme: dark;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      scroll-behavior:smooth;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
       background:linear-gradient(180deg,#04101a 0%, #071827 100%);
@@ -26,27 +26,18 @@
       padding:28px;
     }
     a{color:inherit}
-    .container{max-width:1100px;margin:0 auto;display:grid;gap:28px}
+    .container{max-width:1100px;margin:0 auto;display:grid;gap:18px}
 
-    /* HEADER (fixed spacing + glass background) */
     header{
-      position:sticky;
-      top:16px;
-      z-index:40;
-      padding:12px 14px;
-      border-radius:14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-
+      position:sticky; top:16px; z-index:40;
+      padding:12px 14px; border-radius:14px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
       background: rgba(15, 23, 42, 0.72);
       border: 1px solid rgba(255,255,255,0.05);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       box-shadow: 0 10px 30px rgba(2,6,23,0.45);
     }
-
     .brand{display:flex;gap:12px;align-items:center}
     .logo{
       width:56px;height:56px;border-radius:12px;
@@ -54,55 +45,98 @@
       display:grid;place-items:center;font-weight:800;color:#042026;font-size:18px;
       box-shadow:0 8px 30px rgba(6,182,212,0.08)
     }
-
     nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
     nav a{
-      color:var(--muted);
-      text-decoration:none;
-      padding:8px 10px;
-      border-radius:10px;
-      font-size:14px;
-      line-height:1;
+      color:var(--muted); text-decoration:none;
+      padding:8px 10px; border-radius:10px;
+      font-size:14px; line-height:1;
     }
     nav a:hover, nav a.active{color:var(--accent);background:var(--glass-2)}
     a.theme-toggle{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 10px;border-radius:10px}
 
+    section{scroll-margin-top:92px;}
+    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--glass)}
+    .muted{color:var(--muted);font-size:14px}
+    .pill{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:7px 10px;border-radius:999px;color:var(--muted);font-size:13px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      background:var(--accent);color:#042026;border-radius:10px;
+      padding:10px 14px;font-weight:700;text-decoration:none;
+      box-shadow:0 10px 30px rgba(6,182,212,0.12);
+      border:none; cursor:pointer;
+    }
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600;padding:8px 12px}
+
     .hero{
-      margin-top:6px;
       background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
-      padding:28px;border-radius:var(--radius);
-      display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:center;
+      padding:24px;border-radius:var(--radius);
+      display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start;
       border:1px solid rgba(255,255,255,0.03);
       box-shadow: 0 8px 28px rgba(2,6,23,0.6);
     }
     .hero h1{margin:0;font-size:30px;line-height:1.05}
     .typing{color:var(--accent);font-weight:700}
     .hero p{margin:10px 0 0;color:var(--muted)}
-    .cta-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      background:var(--accent);color:#042026;border-radius:10px;
-      padding:10px 14px;font-weight:700;text-decoration:none;
-      box-shadow:0 10px 30px rgba(6,182,212,0.12);
-      border:none;
-      cursor:pointer;
-    }
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600;padding:8px 12px}
+    .cta-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+    .skills{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .skill{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
 
-    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--glass)}
-    main{display:grid;gap:18px}
     .grid-2{display:grid;grid-template-columns:1fr 380px;gap:18px}
-    .project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
     .project{
       padding:14px;border-radius:10px;
       background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
       cursor:pointer;border:1px solid rgba(255,255,255,0.02)
     }
+    .project:hover{border-color:rgba(6,182,212,0.22)}
     .project h4{margin:0 0 6px}
-    .muted{color:var(--muted);font-size:14px}
-    .skills{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .skill{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
-    footer{display:flex;justify-content:space-between;align-items:center;padding-top:8px;color:var(--muted);font-size:13px}
+
+    /* Certificates */
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:10px}
+    .filters{display:flex;gap:8px;flex-wrap:wrap}
+    .filter{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.06);
+      padding:7px 10px;border-radius:999px;color:var(--muted);
+      cursor:pointer;font-size:13px
+    }
+    .filter.active{border-color:rgba(6,182,212,0.35);color:#dff9ff}
+    .search{min-width:220px;flex:1;max-width:360px}
+    input,textarea{
+      width:100%;
+      background:rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.04);
+      color:inherit;padding:10px;border-radius:8px;outline:none
+    }
+    input:focus,textarea:focus{box-shadow:0 8px 20px rgba(6,182,212,0.06);border-color:rgba(6,182,212,0.14)}
+    textarea{min-height:120px;resize:vertical}
+
+    .cert-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
+    .cert{
+      padding:14px;border-radius:12px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
+      border:1px solid rgba(255,255,255,0.03);
+      cursor:pointer;transition:transform .15s ease,border-color .15s ease
+    }
+    .cert:hover{transform:translateY(-2px);border-color:rgba(6,182,212,0.2)}
+    .row{display:flex;gap:12px;align-items:center}
+    .badge{
+      width:56px;height:56px;border-radius:12px;
+      background:rgba(255,255,255,0.03);
+      display:grid;place-items:center;overflow:hidden;flex:0 0 auto
+    }
+    .badge img{width:100%;height:100%;object-fit:contain;padding:8px}
+    .title{font-weight:800}
+    .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+    .tag{font-size:12px;color:var(--muted);background:rgba(255,255,255,0.03);padding:4px 8px;border-radius:999px}
+
+    /* Timeline */
+    .timeline{display:grid;gap:10px;margin-top:10px}
+    .job{padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02)}
+    .job h4{margin:0}
+    .job .meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:4px}
+    .job ul{margin:10px 0 0;padding-left:18px;color:#cfe0f0}
+    .job li{margin:6px 0}
 
     /* Modal */
     .modal-backdrop{
@@ -118,33 +152,26 @@
     }
     .modal .close{float:right;background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer}
 
-    /* Contact form */
-    form{display:grid;gap:8px}
-    input,textarea{
-      background:rgba(255,255,255,0.02);
-      border:1px solid rgba(255,255,255,0.04);
-      color:inherit;padding:10px;border-radius:8px;outline:none
-    }
-    input:focus,textarea:focus{box-shadow:0 8px 20px rgba(6,182,212,0.06);border-color:rgba(6,182,212,0.14)}
-    textarea{min-height:120px;resize:vertical}
+    footer{display:flex;justify-content:space-between;align-items:center;padding-top:8px;color:var(--muted);font-size:13px}
 
-    /* Responsive */
+    /* reveal */
+    .reveal{opacity:0;transform:translateY(10px);transition:all .6s cubic-bezier(.2,.9,.3,1)}
+    .reveal.visible{opacity:1;transform:none}
+
     @media (max-width:980px){
       .hero{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
       .project-grid{grid-template-columns:1fr}
+      .cert-grid{grid-template-columns:1fr}
       header{position:static}
+      section{scroll-margin-top:20px;}
     }
     @media (max-width:600px){
       body{padding:16px}
     }
 
-    /* reveal animations */
-    .reveal{opacity:0;transform:translateY(10px);transition:all .6s cubic-bezier(.2,.9,.3,1)}
-    .reveal.visible{opacity:1;transform:none}
-
     /* light mode */
-    :root.light{--bg:#f7fbff;--card:#ffffff;--muted:#506070;--accent:#0b5682;color-scheme:light}
+    :root.light{--card:#ffffff;--muted:#506070;--accent:#0b5682;color-scheme:light}
     body.light{background:linear-gradient(180deg,#f9fbff 0%, #f0f5fb 100%);color:#042026}
     :root.light header{
       background: rgba(255,255,255,0.82);
@@ -154,6 +181,7 @@
     :root.light a.theme-toggle{border-color:rgba(2,6,23,0.12)}
   </style>
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -161,131 +189,267 @@
         <div class="logo" aria-hidden="true">PL</div>
         <div>
           <div style="font-weight:800;font-size:16px">Peter Leonard</div>
-          <div class="muted" style="font-size:13px">Systems Engineer · Platform Automation</div>
+          <div class="muted" style="font-size:13px">Senior Systems Engineer · Platform Automation</div>
         </div>
       </div>
 
       <nav aria-label="Main navigation">
-        <a href="index.html" class="active">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="certificates.html">Certificates</a>
-        <a href="#contact">Contact</a>
+        <a href="#home" data-nav class="active">Home</a>
+        <a href="#competencies" data-nav>Skills</a>
+        <a href="#experience" data-nav>Experience</a>
+        <a href="#certificates" data-nav>Certificates</a>
+        <a href="#education" data-nav>Education</a>
+        <a href="#contact" data-nav>Contact</a>
         <a href="#" id="themeToggle" class="theme-toggle" title="Toggle light/dark" aria-pressed="false">Toggle theme</a>
       </nav>
     </header>
 
-    <section class="hero reveal" id="home" role="region" aria-label="Intro">
+    <!-- HERO -->
+    <section class="hero reveal" id="home" aria-label="Intro">
       <div>
         <h1>Hi — I'm Peter. <span class="typing" id="typing"></span></h1>
-        <p class="muted">I design resilient systems, automate repetitive work, and build observability and tooling that teams rely on.</p>
+        <p class="muted">
+          Results-driven Senior Systems Engineer with expertise in cloud platforms, automation, and infrastructure management. :contentReference[oaicite:2]{index=2}
+        </p>
 
-        <div class="skills" aria-hidden="false">
-          <span class="skill">GCP</span>
+        <div class="skills">
+          <span class="skill">Azure</span>
+          <span class="skill">AWS</span>
+          <span class="skill">Microsoft 365</span>
           <span class="skill">Terraform</span>
           <span class="skill">PowerShell</span>
           <span class="skill">Python</span>
-          <span class="skill">CI/CD</span>
-          <span class="skill">Observability</span>
+          <span class="skill">VMware</span>
+          <span class="skill">Okta</span>
+          <span class="skill">Google Workspace</span>
         </div>
 
         <div class="cta-row">
-          <a class="btn" href="#projects">View projects</a>
+          <a class="btn" href="#experience">View experience</a>
           <a class="btn ghost" href="resume.pdf" download>Download resume</a>
           <a class="btn ghost" href="https://github.com/YOUR_GITHUB" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a class="btn ghost" href="https://www.linkedin.com/in/peter-leonard-35022aa4/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
 
-      <aside class="card" aria-hidden="false">
-        <h3 style="margin:0 0 8px">Quick facts</h3>
-        <div class="muted">Location: Berlin, DE · Open to remote / hybrid roles</div>
+      <aside class="card">
+        <h3 style="margin:0 0 8px">Quick info</h3>
+        <div class="muted">Berlin, Germany :contentReference[oaicite:3]{index=3}</div>
+        <div class="muted" style="margin-top:6px">Email: peterleonardmit@gmail.com :contentReference[oaicite:4]{index=4}</div>
+        <div class="muted" style="margin-top:6px">Phone: +49-17686499345 :contentReference[oaicite:5]{index=5}</div>
         <hr style="border:none;border-top:1px solid var(--glass);margin:12px 0">
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <div style="min-width:120px">
-            <div style="font-weight:700">10+ yrs</div>
-            <div class="muted" style="font-size:13px">Infrastructure & Automation</div>
-          </div>
-          <div style="min-width:120px">
-            <div style="font-weight:700">SRE-ish</div>
-            <div class="muted" style="font-size:13px">Incident response & runbooks</div>
-          </div>
-        </div>
-        <div style="margin-top:14px">
-          <a class="btn" href="#contact">Let's talk</a>
-        </div>
+        <div class="pill">Acted as IT Ops technical lead (mentored 6 engineers) :contentReference[oaicite:6]{index=6}</div>
       </aside>
     </section>
 
-    <main>
-      <section id="about" class="card reveal">
-        <h3>About</h3>
-        <p class="muted" style="margin-top:8px">
-          I'm an operations-minded systems engineer who reduces toil with automation and improves reliability through monitoring, IaC and careful runbooks. I like pragmatic tooling and building reusable modules that teams can adopt.
-        </p>
-      </section>
+    <!-- OBJECTIVE / ABOUT -->
+    <section class="card reveal" id="about">
+      <h3 style="margin:0 0 8px">Objective</h3>
+      <p class="muted" style="margin:0">
+        Passionate about scalability, reliability, and automation in modern IT environments, with hands-on leadership and mentoring experience. :contentReference[oaicite:7]{index=7}
+      </p>
+    </section>
+
+    <!-- COMPETENCIES -->
+    <section class="card reveal" id="competencies">
+      <h3 style="margin:0 0 8px">Core competencies</h3>
+
+      <div class="grid-2" style="margin-top:12px">
+        <div class="card" style="background:rgba(255,255,255,0.02)">
+          <h4 style="margin:0 0 8px">Platforms & tooling</h4>
+          <ul class="muted" style="margin:0;padding-left:18px">
+            <li>Cloud: Microsoft Azure, AWS, Microsoft 365, Azure AD (AAD), Google Workspace, Okta, Slack :contentReference[oaicite:8]{index=8}</li>
+            <li>Virtualization: VMware vSphere, vRealize Automation, NSX :contentReference[oaicite:9]{index=9}</li>
+            <li>DevOps: Terraform, Jenkins, Docker, Kubernetes :contentReference[oaicite:10]{index=10}</li>
+            <li>Monitoring: Site24x7, Datadog :contentReference[oaicite:11]{index=11}</li>
+          </ul>
+        </div>
+
+        <div class="card" style="background:rgba(255,255,255,0.02)">
+          <h4 style="margin:0 0 8px">Systems & operations</h4>
+          <ul class="muted" style="margin:0;padding-left:18px">
+            <li>Scripting: PowerShell, PowerCLI, Python :contentReference[oaicite:12]{index=12}</li>
+            <li>OS: Windows Servers, Linux (RHEL, Ubuntu), macOS :contentReference[oaicite:13]{index=13}</li>
+            <li>IT Services: Active Directory, DNS, DHCP, Exchange :contentReference[oaicite:14]{index=14}</li>
+            <li>Endpoint: Sophos, MS Defender, Intune, SCCM :contentReference[oaicite:15]{index=15}</li>
+            <li>Backup/DR: NinjaOne, Acronis, Veeam, ShadowProtect :contentReference[oaicite:16]{index=16}</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="card reveal" id="experience">
+      <h3 style="margin:0 0 8px">Professional experience</h3>
+      <div class="timeline">
+        <div class="job">
+          <h4>Bonial International GmbH — Berlin</h4>
+          <div class="meta">
+            <span>Aug 2022 – Present</span>
+            <span>•</span>
+            <span>Senior System Administrator</span>
+          </div>
+          <ul>
+            <li>Technical lead for IT Operations in the absence of a formal team lead; mentored 6 IT support engineers. :contentReference[oaicite:17]{index=17}</li>
+          </ul>
+          <div class="muted" style="margin-top:10px">Source: :contentReference[oaicite:18]{index=18}</div>
+        </div>
+
+        <div class="job">
+          <h4>CSI Interfusion Inc — Bangalore, India</h4>
+          <div class="meta">
+            <span>May 2020 – Mar 2022</span>
+            <span>•</span>
+            <span>Senior System Engineer</span>
+            <span>•</span>
+            <span>Client: Microsoft</span>
+          </div>
+          <div class="muted" style="margin-top:10px">Source: :contentReference[oaicite:19]{index=19}</div>
+        </div>
+
+        <div class="job">
+          <h4>Adventus Singapore Pte Ltd — Singapore</h4>
+          <div class="meta">
+            <span>Aug 2018 – Jan 2020</span>
+            <span>•</span>
+            <span>IT Systems Engineer</span>
+          </div>
+          <div class="muted" style="margin-top:10px">Source: :contentReference[oaicite:20]{index=20}</div>
+        </div>
+
+        <div class="job">
+          <h4>Cognizant Technology Solutions — Bangalore, India</h4>
+          <div class="meta">
+            <span>May 2016 – Aug 2018</span>
+            <span>•</span>
+            <span>Senior Systems Engineer</span>
+          </div>
+          <div class="muted" style="margin-top:10px">Source: :contentReference[oaicite:21]{index=21}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS (keep your existing project cards; edit links later) -->
+    <section class="card reveal" id="projects">
+      <h3 style="margin:0 0 8px">Selected projects</h3>
+      <div class="muted">Click a project to view details and links.</div>
+
+      <div class="project-grid">
+        <div class="project" data-project='{"title":"Platform Automation Toolkit","desc":"Terraform modules + scripts to provision cross-project IAM, monitoring and alerting.","links":[{"label":"Repo","url":"https://github.com/YOUR_GITHUB/platform-automation"}]}'>
+          <h4>Platform Automation Toolkit</h4>
+          <div class="muted">Terraform · Cloud IAM · Monitoring</div>
+        </div>
+
+        <div class="project" data-project='{"title":"Endpoint & Identity Automation","desc":"PowerShell/Python automations for user lifecycle, group access, and device compliance workflows.","links":[{"label":"Notes","url":"#"}]}'>
+          <h4>Endpoint & Identity Automation</h4>
+          <div class="muted">PowerShell · Intune · Azure AD</div>
+        </div>
+
+        <div class="project" data-project='{"title":"Service Health Dashboard","desc":"Dashboard concept aggregating SaaS status + alerting hooks for incidents.","links":[{"label":"Demo","url":"#"}]}'>
+          <h4>Service Health Dashboard</h4>
+          <div class="muted">Monitoring · Ops · Alerting</div>
+        </div>
+
+        <div class="project" data-project='{"title":"CI/CD Registry & Publishing Flows","desc":"CI workflows for publishing internal packages and enforcing consistent auth patterns.","links":[{"label":"Docs","url":"#"}]}'>
+          <h4>CI/CD Registry & Publishing Flows</h4>
+          <div class="muted">CI/CD · Automation · Tooling</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section class="card reveal" id="certificates">
+      <h3 style="margin:0 0 6px">IT certifications</h3>
+      <div class="muted">From your resume: AZ-900, AWS Cloud Practitioner, Microsoft 365 Fundamentals, Security/Compliance/Identity Fundamentals, VMware VCP 2019. :contentReference[oaicite:22]{index=22}</div>
+
+      <div class="toolbar">
+        <div class="filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="cloud">Cloud</button>
+          <button class="filter" data-filter="security">Security</button>
+          <button class="filter" data-filter="virtualization">Virtualization</button>
+        </div>
+        <div class="search">
+          <input id="certSearch" type="search" placeholder="Search certificates (Azure, AWS, VMware…)" />
+        </div>
+      </div>
+
+      <div class="cert-grid" id="certGrid"></div>
+      <div class="muted" id="certEmpty" style="display:none;margin-top:12px">No certificates match your filters.</div>
+
+      <div class="muted" style="margin-top:12px">
+        Tip: Add badge images in <code>assets/badges/</code> and proof PDFs in <code>assets/certs/</code>.
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="card reveal" id="education">
+      <h3 style="margin:0 0 8px">Education</h3>
+      <div class="card" style="background:rgba(255,255,255,0.02)">
+        <div style="display:grid;gap:10px">
+          <div>
+            <div style="font-weight:800">B.Tech (ECE) — Pondicherry University</div>
+            <div class="muted">Manakula Vinayagar Institute of Technology · 2015 · 87.40% :contentReference[oaicite:23]{index=23}</div>
+          </div>
+          <div>
+            <div style="font-weight:800">HSC — State Board</div>
+            <div class="muted">Seventh Day Adventist Higher Secondary School · 2011 · 88.41% :contentReference[oaicite:24]{index=24}</div>
+          </div>
+          <div>
+            <div style="font-weight:800">SSLC — State Board</div>
+            <div class="muted">Seventh Day Adventist Higher Secondary School · 2009 · 92.20% :contentReference[oaicite:25]{index=25}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="card reveal" id="contact">
+      <h3 style="margin:0 0 8px">Contact</h3>
+      <div class="muted" style="margin-bottom:12px">
+        Berlin, Germany · peterleonardmit@gmail.com · +49-17686499345 :contentReference[oaicite:26]{index=26}
+      </div>
 
       <div class="grid-2">
-        <section id="projects" class="card reveal" aria-labelledby="projectsTitle">
-          <h3 id="projectsTitle">Selected projects</h3>
-          <div style="color:var(--muted);margin-top:8px">Click a project to view details and links.</div>
-
-          <div class="project-grid" style="margin-top:14px">
-            <div class="project" data-project='{"title":"Platform Automation Toolkit","desc":"Terraform modules + scripts to provision cross-project IAM, monitoring and alerting on GCP.","links":[{"label":"Repo","url":"https://github.com/YOUR_GITHUB/platform-automation"}]}'>
-              <h4>Platform Automation Toolkit</h4>
-              <div class="muted">Terraform · GCP · CI/CD</div>
-            </div>
-
-            <div class="project" data-project='{"title":"Incident Runbooks","desc":"Curated runbooks & PagerDuty playbooks used for major incident response and postmortem training.","links":[{"label":"Notes","url":"#"}]}'>
-              <h4>Incident Runbooks</h4>
-              <div class="muted">Runbooks · On-call tooling</div>
-            </div>
-
-            <div class="project" data-project='{"title":"Service Health Dashboard","desc":"Power BI dashboard that aggregates service status and triggers Slack alerts for incidents.","links":[{"label":"Demo","url":"#"}]}'>
-              <h4>Service Health Dashboard</h4>
-              <div class="muted">Power BI · Slack · Monitoring</div>
-            </div>
-
-            <div class="project" data-project='{"title":"CI Orbs & Private Registry","desc":"CircleCI orb & publishing flows to Verdaccio / Artifact Registry for internal packages.","links":[{"label":"Docs","url":"#"}]}'>
-              <h4>CI Orbs & Private Registry</h4>
-              <div class="muted">CircleCI · npm · Artifact Registry</div>
-            </div>
+        <div class="card" style="background:rgba(255,255,255,0.02)">
+          <h4 style="margin:0 0 8px">Links</h4>
+          <div class="muted" style="display:grid;gap:8px">
+            <div>LinkedIn: <a href="https://www.linkedin.com/in/peter-leonard-35022aa4/" target="_blank" rel="noopener noreferrer">/peter-leonard-35022aa4</a> :contentReference[oaicite:27]{index=27}</div>
+            <div>Email: <a href="mailto:peterleonardmit@gmail.com">peterleonardmit@gmail.com</a> :contentReference[oaicite:28]{index=28}</div>
           </div>
-        </section>
+        </div>
 
-        <aside class="card reveal" id="contact">
-          <h3>Contact & availability</h3>
-          <p class="muted" style="margin-top:8px">Open to contract and full-time opportunities. Prefer backend/platform roles with autonomy.</p>
-
-          <form id="contactForm" action="#" method="POST" onsubmit="submitForm(event)">
+        <div class="card" style="background:rgba(255,255,255,0.02)">
+          <h4 style="margin:0 0 8px">Message me</h4>
+          <form id="contactForm" onsubmit="submitForm(event)">
             <input type="text" name="name" placeholder="Your name" required />
             <input type="email" name="email" placeholder="Your email" required />
             <input type="text" name="subject" placeholder="Subject" />
             <textarea name="message" placeholder="Message" required></textarea>
 
-            <div style="display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap">
+            <div style="display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-top:8px">
               <button class="btn" type="submit">Send message</button>
-              <div class="muted" style="font-size:13px">Or email:
-                <a href="mailto:peter.selvadurai@bonial.com">peter.selvadurai@bonial.com</a>
-              </div>
+              <div class="muted" style="font-size:13px">Mailto fallback (no backend)</div>
             </div>
             <div id="formStatus" class="muted" style="margin-top:8px;display:none"></div>
           </form>
-        </aside>
+        </div>
       </div>
-    </main>
+    </section>
 
     <footer class="reveal">
-      <div>Made with ☕ · <span class="muted">Built for GitHub Pages</span></div>
+      <div>Made with ☕ · <span class="muted">Single-page GitHub Pages</span></div>
       <div>© <span id="year"></span> Peter Leonard</div>
     </footer>
   </div>
 
+  <!-- Shared modal (projects + certs) -->
   <div id="modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal" role="document">
       <button class="close" aria-label="Close modal" onclick="closeModal()">✕</button>
       <h3 id="modalTitle"></h3>
       <p id="modalDesc" class="muted" style="margin-top:8px"></p>
-      <div id="modalLinks" style="margin-top:12px"></div>
+      <div id="modalLinks" style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap"></div>
     </div>
   </div>
 
@@ -294,14 +458,14 @@
 
     // Typing animation
     const typingEl = document.getElementById('typing');
-    const phrases = ['Automation engineer', 'Infrastructure nerd', 'SRE-ish systems engineer', 'Terraform fan'];
+    const phrases = ['Senior Systems Engineer', 'Platform Automation', 'Cloud & Infrastructure', 'Reliability & Automation'];
     let pi = 0, ci = 0, forward = true;
     function tick(){
       const p = phrases[pi];
       typingEl.textContent = p.slice(0, ci);
       if(forward) { ci++; if(ci > p.length){ forward = false; setTimeout(tick, 900); return; } }
       else { ci--; if(ci < 0){ forward = true; pi = (pi+1)%phrases.length; } }
-      setTimeout(tick, forward ? 80 : 40);
+      setTimeout(tick, forward ? 60 : 30);
     }
     tick();
 
@@ -313,10 +477,27 @@
     }, {threshold: 0.12});
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Projects -> modal
+    // Active nav highlight (based on scroll)
+    const navLinks = [...document.querySelectorAll('nav a[data-nav]')];
+    const sections = navLinks
+      .map(a => document.querySelector(a.getAttribute('href')))
+      .filter(Boolean);
+
+    const navObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          navLinks.forEach(a => a.classList.remove('active'));
+          const active = navLinks.find(a => a.getAttribute('href') === '#' + entry.target.id);
+          if(active) active.classList.add('active');
+        }
+      });
+    }, {rootMargin: "-45% 0px -50% 0px", threshold: 0.01});
+    sections.forEach(s => navObserver.observe(s));
+
+    // Modal helpers
     function openModal(data){
-      document.getElementById('modalTitle').textContent = data.title;
-      document.getElementById('modalDesc').textContent = data.desc;
+      document.getElementById('modalTitle').textContent = data.title || '';
+      document.getElementById('modalDesc').textContent = data.desc || '';
       const links = document.getElementById('modalLinks');
       links.innerHTML = '';
       (data.links||[]).forEach(l=>{
@@ -324,7 +505,7 @@
         el.href = l.url;
         el.target = '_blank';
         el.rel = 'noopener noreferrer';
-        el.className = 'btn ghost';
+        el.className = l.primary ? 'btn' : 'btn ghost';
         el.textContent = l.label;
         links.appendChild(el);
       });
@@ -339,16 +520,90 @@
       mb.setAttribute('aria-hidden','true');
       document.body.style.overflow = '';
     }
+    document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') closeModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+    window.closeModal = closeModal;
+
+    // Projects -> modal
     document.querySelectorAll('.project').forEach(el=>{
       el.addEventListener('click', ()=>{
         const data = JSON.parse(el.getAttribute('data-project'));
         openModal(data);
       });
     });
-    document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') closeModal(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
 
-    // Theme toggle (guarded)
+    // Certificates data (from resume list; add proof/verify links as you get them)
+    const certs = [
+      { title:"Microsoft Certified: Azure Fundamentals (AZ-900)", org:"Microsoft", category:["cloud"], tags:["Azure","Fundamentals"], badge:"assets/badges/az-900.png", desc:"Azure Fundamentals certification.", links:[] },
+      { title:"AWS Certified Cloud Practitioner", org:"Amazon Web Services", category:["cloud"], tags:["AWS","Fundamentals"], badge:"assets/badges/aws-cloud-practitioner.png", desc:"AWS Cloud Practitioner certification.", links:[] },
+      { title:"Microsoft 365 Certified: Fundamentals", org:"Microsoft", category:["cloud"], tags:["M365","Fundamentals"], badge:"assets/badges/m365-fundamentals.png", desc:"Microsoft 365 Fundamentals certification.", links:[] },
+      { title:"Microsoft Certified: Security, Compliance & Identity Fundamentals", org:"Microsoft", category:["security"], tags:["Security","Compliance","Identity"], badge:"assets/badges/sc-900.png", desc:"Security, compliance and identity fundamentals.", links:[] },
+      { title:"VMware Certified Professional 2019 – Cloud & Management Automation", org:"VMware", category:["virtualization"], tags:["VMware","Automation"], badge:"assets/badges/vmware-vcp.png", desc:"VMware VCP in cloud & management automation.", links:[] }
+    ];
+
+    const certGrid = document.getElementById('certGrid');
+    const certEmpty = document.getElementById('certEmpty');
+    const certSearch = document.getElementById('certSearch');
+    let activeFilter = 'all';
+
+    function renderCerts(){
+      const q = (certSearch.value || '').toLowerCase().trim();
+      const filtered = certs.filter(c=>{
+        const matchesFilter = activeFilter === 'all' || (c.category || []).includes(activeFilter);
+        const hay = (c.title + " " + c.org + " " + (c.tags||[]).join(" ") + " " + (c.desc||"")).toLowerCase();
+        const matchesQuery = !q || hay.includes(q);
+        return matchesFilter && matchesQuery;
+      });
+
+      certGrid.innerHTML = "";
+      certEmpty.style.display = filtered.length ? "none" : "block";
+
+      filtered.forEach(c=>{
+        const el = document.createElement('div');
+        el.className = 'cert';
+        el.tabIndex = 0;
+        el.setAttribute('role','button');
+
+        el.innerHTML = `
+          <div class="row">
+            <div class="badge" aria-hidden="true">
+              ${c.badge ? `<img src="${c.badge}" alt="">` : `<span class="muted" style="font-weight:800">★</span>`}
+            </div>
+            <div>
+              <div class="title">${c.title}</div>
+              <div class="muted">${c.org}</div>
+            </div>
+          </div>
+          <div class="tags">
+            ${(c.tags||[]).map(t=>`<span class="tag">${t}</span>`).join("")}
+          </div>
+        `;
+
+        const modalData = {
+          title: c.title,
+          desc: c.desc || '',
+          links: (c.links && c.links.length) ? c.links : [{label:"No proof link yet", url:"#", primary:false}]
+        };
+
+        el.addEventListener('click', ()=>openModal(modalData));
+        el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') openModal(modalData); });
+        certGrid.appendChild(el);
+      });
+    }
+
+    document.querySelectorAll('[data-filter]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.getAttribute('data-filter');
+        renderCerts();
+      });
+    });
+
+    certSearch.addEventListener('input', renderCerts);
+    renderCerts();
+
+    // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
     if(themeToggle){
       themeToggle.addEventListener('click', (e)=>{
@@ -360,33 +615,21 @@
       });
     }
 
-    // Contact form handler (no backend)
+    // Contact: mailto fallback
     async function submitForm(e){
       e.preventDefault();
       const form = e.target;
       const data = new FormData(form);
       const status = document.getElementById('formStatus');
       status.style.display = 'block';
-      status.textContent = 'Sending…';
+      status.textContent = 'Opening mail client…';
 
-      const FORM_ENDPOINT = ''; // set to your form provider endpoint (optional)
-      if(FORM_ENDPOINT){
-        try{
-          const res = await fetch(FORM_ENDPOINT, {method:'POST', body: data});
-          if(res.ok){ status.textContent = 'Thanks — message sent!'; form.reset(); }
-          else{ status.textContent = 'There was an issue sending the message.'; }
-        }catch(err){ status.textContent = 'Network error sending message.'; }
-        return;
-      }
-
-      // Mailto fallback
       const name = encodeURIComponent(data.get('name') || '');
       const email = encodeURIComponent(data.get('email') || '');
       const subject = encodeURIComponent(data.get('subject') || 'Website contact');
       const message = encodeURIComponent(data.get('message') || '');
       window.location.href =
-        `mailto:peter.selvadurai@bonial.com?subject=${subject}&body=From:%20${name}%20(${email})%0A%0A${message}`;
-      status.textContent = 'Opening mail client…';
+        `mailto:peterleonardmit@gmail.com?subject=${subject}&body=From:%20${name}%20(${email})%0A%0A${message}`;
     }
   </script>
 </body>
