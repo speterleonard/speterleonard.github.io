@@ -18,7 +18,7 @@
       --glass-2: rgba(255,255,255,0.02);
       --radius:14px;
       color-scheme: dark;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       scroll-behavior:smooth;
     }
     *{box-sizing:border-box}
@@ -40,25 +40,17 @@
       background: rgba(15, 23, 42, 0.72);
       border: 1px solid rgba(255,255,255,0.05);
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       box-shadow: 0 10px 30px rgba(2,6,23,0.45);
     }
-
     .brand{display:flex;gap:12px;align-items:center}
     .logo{
       width:56px;height:56px;border-radius:12px;
-      background:linear-gradient(135deg,var(--accent),#7c3aed);
-      display:grid;place-items:center;font-weight:800;color:#042026;font-size:18px;
-      box-shadow:0 8px 30px rgba(6,182,212,0.08);
+      display:grid;place-items:center;
       flex:0 0 auto;
     }
-
-    /* ✅ CIRCULAR PROFILE PHOTO (ONLY in header logo) */
     .logo.avatar{
-      background:none;        /* remove gradient */
-      padding:0;
       overflow:hidden;
-      border-radius:50%;      /* circle */
+      border-radius:50%;
       box-shadow:
         0 8px 30px rgba(6,182,212,0.25),
         inset 0 0 0 2px rgba(255,255,255,0.25);
@@ -67,511 +59,231 @@
       width:100%;
       height:100%;
       object-fit:cover;
-      display:block;
       border-radius:50%;
       transition:transform .25s ease;
     }
     .logo.avatar:hover img{ transform:scale(1.05); }
 
-    nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    nav{display:flex;gap:8px;flex-wrap:wrap}
     nav a{
       color:var(--muted);
       text-decoration:none;
       padding:8px 10px;
       border-radius:10px;
       font-size:14px;
-      line-height:1;
     }
-    nav a:hover, nav a.active{color:var(--accent);background:var(--glass-2)}
-    a.theme-toggle{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 10px;border-radius:10px}
+    nav a.active, nav a:hover{
+      color:var(--accent);
+      background:var(--glass-2);
+    }
 
     section{scroll-margin-top:92px;}
     .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--glass)}
     .muted{color:var(--muted);font-size:14px}
     .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      background:var(--accent);color:#042026;border-radius:10px;
-      padding:10px 14px;font-weight:700;text-decoration:none;
+      background:var(--accent);color:#042026;
+      border-radius:10px;padding:10px 14px;
+      font-weight:700;text-decoration:none;
+      border:none;cursor:pointer;
       box-shadow:0 10px 30px rgba(6,182,212,0.12);
-      border:none; cursor:pointer;
     }
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600;padding:8px 12px}
+    .btn.ghost{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--muted);
+    }
 
     /* HERO */
     .hero{
+      position:relative;
+      overflow:hidden;
       margin-top:6px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
-      padding:24px;border-radius:var(--radius);
-      display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start;
+      padding:24px;
+      border-radius:var(--radius);
+      display:grid;
+      grid-template-columns:1fr 360px;
+      gap:18px;
       border:1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 8px 28px rgba(2,6,23,0.6);
+      box-shadow:0 8px 28px rgba(2,6,23,0.6);
     }
-    .hero h1{margin:0;font-size:30px;line-height:1.05}
+
+    /* === OPS GRID BACKGROUND === */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-120px;
+      background:
+        linear-gradient(to right, rgba(6,182,212,0.12) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(6,182,212,0.10) 1px, transparent 1px);
+      background-size:58px 58px;
+      opacity:0.18;
+      transform:rotate(12deg);
+      animation:gridMove 18s linear infinite;
+    }
+
+    /* === SCANNING LINE === */
+    .hero::after{
+      content:"";
+      position:absolute;
+      left:-10%; right:-10%;
+      top:-30%;
+      height:220px;
+      background:linear-gradient(
+        180deg,
+        rgba(6,182,212,0) 0%,
+        rgba(6,182,212,0.18) 50%,
+        rgba(6,182,212,0) 100%
+      );
+      filter:blur(2px);
+      animation:scanLine 6s ease-in-out infinite;
+      opacity:.6;
+    }
+
+    .hero > *{position:relative;z-index:1}
+
+    @keyframes gridMove{
+      from{background-position:0 0,0 0}
+      to{background-position:420px 0,0 420px}
+    }
+    @keyframes scanLine{
+      from{transform:translateY(-40%) skewY(-8deg)}
+      to{transform:translateY(140%) skewY(-8deg)}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .hero::before,.hero::after{animation:none}
+    }
+
+    .hero h1{margin:0;font-size:30px}
     .typing{color:var(--accent);font-weight:700}
-    .hero p{margin:10px 0 0}
-    .cta-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+
     .skills{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .skill{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
-
-    /* LAYOUT */
-    .grid-2{display:grid;grid-template-columns:1fr 380px;gap:18px}
-
-    /* PROJECTS */
-    .project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
-    .project{
-      padding:14px;border-radius:10px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
-      cursor:pointer;border:1px solid rgba(255,255,255,0.02)
+    .skill{
+      background:rgba(255,255,255,0.03);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
     }
-    .project:hover{border-color:rgba(6,182,212,0.22)}
-    .project h4{margin:0 0 6px}
 
     /* EXPERIENCE */
-    .timeline{display:grid;gap:10px;margin-top:10px}
-    .job{padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02)}
-    .job h4{margin:0}
-    .job .meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:4px}
-    .job ul{margin:10px 0 0;padding-left:18px;color:#cfe0f0}
-    .job li{margin:6px 0}
-
-    /* CERTIFICATES */
-    .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:10px}
-    .filters{display:flex;gap:8px;flex-wrap:wrap}
-    .filter{
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.06);
-      padding:7px 10px;border-radius:999px;color:var(--muted);
-      cursor:pointer;font-size:13px
-    }
-    .filter.active{border-color:rgba(6,182,212,0.35);color:#dff9ff}
-    .search{min-width:220px;flex:1;max-width:360px}
-    input,textarea{
-      width:100%;
-      background:rgba(255,255,255,0.02);
+    .timeline{display:grid;gap:10px}
+    .job{
+      padding:14px;
+      border-radius:12px;
       border:1px solid rgba(255,255,255,0.04);
-      color:inherit;padding:10px;border-radius:8px;outline:none
+      background:rgba(255,255,255,0.02);
     }
-    input:focus,textarea:focus{box-shadow:0 8px 20px rgba(6,182,212,0.06);border-color:rgba(6,182,212,0.14)}
-    textarea{min-height:120px;resize:vertical}
 
-    .cert-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
-    .cert{
-      padding:14px;border-radius:12px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
-      border:1px solid rgba(255,255,255,0.03);
-      cursor:pointer;transition:transform .15s ease,border-color .15s ease
+    footer{
+      display:flex;
+      justify-content:space-between;
+      color:var(--muted);
+      font-size:13px;
     }
-    .cert:hover{transform:translateY(-2px);border-color:rgba(6,182,212,0.2)}
-    .row{display:flex;gap:12px;align-items:center}
-    .badge{
-      width:56px;height:56px;border-radius:12px;
-      background:rgba(255,255,255,0.03);
-      display:grid;place-items:center;overflow:hidden;flex:0 0 auto
-    }
-    .badge img{width:100%;height:100%;object-fit:contain;padding:8px}
-    .title{font-weight:800}
-    .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-    .tag{font-size:12px;color:var(--muted);background:rgba(255,255,255,0.03);padding:4px 8px;border-radius:999px}
 
-    /* MODAL */
-    .modal-backdrop{
-      position:fixed;inset:0;background:rgba(3,6,12,0.6);
-      display:grid;place-items:center;padding:20px;z-index:60;
-      opacity:0;pointer-events:none;transition:opacity .2s
-    }
-    .modal-backdrop.open{opacity:1;pointer-events:all}
-    .modal{
-      max-width:920px;width:100%;
-      background:linear-gradient(180deg,#071827 0%, #0b1724 100%);
-      padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)
-    }
-    .modal .close{float:right;background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer}
-
-    footer{display:flex;justify-content:space-between;align-items:center;padding-top:8px;color:var(--muted);font-size:13px}
-
-    /* reveal */
-    .reveal{opacity:0;transform:translateY(10px);transition:all .6s cubic-bezier(.2,.9,.3,1)}
-    .reveal.visible{opacity:1;transform:none}
-
-    @media (max-width:980px){
+    @media (max-width:900px){
       .hero{grid-template-columns:1fr}
-      .grid-2{grid-template-columns:1fr}
-      .project-grid{grid-template-columns:1fr}
-      .cert-grid{grid-template-columns:1fr}
       header{position:static}
-      section{scroll-margin-top:20px;}
-    }
-    @media (max-width:600px){ body{padding:16px} }
-
-    /* light mode */
-    :root.light{--card:#ffffff;--muted:#506070;--accent:#0b5682;color-scheme:light}
-    body.light{background:linear-gradient(180deg,#f9fbff 0%, #f0f5fb 100%);color:#042026}
-    :root.light header{
-      background: rgba(255,255,255,0.82);
-      border: 1px solid rgba(2,6,23,0.08);
-      box-shadow: 0 10px 30px rgba(2,6,23,0.10);
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <!-- ✅ Put your photo here: assets/profile.jpg -->
-        <div class="logo avatar">
-          <img src="assets/profile.png" alt="Peter Leonard profile photo">
-        </div>
-        <div>
-          <div style="font-weight:800;font-size:16px">Peter Leonard</div>
-          <div class="muted" style="font-size:13px">Senior Systems Administrator</div>
-        </div>
+<div class="container">
+  <header>
+    <div class="brand">
+      <div class="logo avatar">
+        <img src="assets/profile.png" alt="Peter Leonard">
       </div>
-
-      <nav aria-label="Main navigation">
-        <a href="#home" data-nav class="active">Home</a>
-        <a href="#skills" data-nav>Skills</a>
-        <a href="#experience" data-nav>Experience</a>
-        <a href="#projects" data-nav>Projects</a>
-        <a href="#certificates" data-nav>Certificates</a>
-        <a href="#education" data-nav>Education</a>
-        <a href="#contact" data-nav>Contact</a>
-        <a href="#" id="themeToggle" class="theme-toggle" aria-pressed="false">Toggle theme</a>
-      </nav>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero reveal" id="home">
       <div>
-        <h1>Hi — I'm Peter. <span class="typing" id="typing"></span></h1>
-        <p class="muted">
-          Senior Systems Administrator focused on IT Operations, automation, and reliable infrastructure.
-        </p>
-
-        <div class="skills">
-          <span class="skill">IT Operations</span>
-          <span class="skill">Incident Management</span>
-          <span class="skill">Azure</span>
-          <span class="skill">AWS</span>
-          <span class="skill">Terraform</span>
-          <span class="skill">PowerShell</span>
-          <span class="skill">Python</span>
-          <span class="skill">VMware</span>
-          <span class="skill">Microsoft 365</span>
-        </div>
-
-        <div class="cta-row">
-          <a class="btn" href="#experience">View experience</a>
-          <a class="btn ghost" href="https://www.linkedin.com/in/peter-leonard-35022aa4/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </div>
+        <div style="font-weight:800">Peter Leonard</div>
+        <div class="muted">Senior Systems Administrator</div>
       </div>
-
-      <aside class="card">
-        <h3 style="margin:0 0 8px">Quick info</h3>
-        <div class="muted">Berlin, Germany</div>
-        <div class="muted" style="margin-top:6px">Email: <a href="mailto:peterleonardmit@gmail.com">peterleonardmit@gmail.com</a></div>
-        <div class="muted" style="margin-top:6px">Phone: +49-17686499345</div>
-        <hr style="border:none;border-top:1px solid var(--glass);margin:12px 0">
-        <div class="muted">IT Operations lead experience · mentoring & process improvements</div>
-      </aside>
-    </section>
-
-<!-- SKILLS --> <section class="card reveal" id="skills"> <h3 style="margin:0 0 8px">Core Competencies</h3> <div class="grid-2" style="margin-top:12px"> <div class="card" style="background:rgba(255,255,255,0.02)"> <h4 style="margin:0 0 8px">Platforms & Tooling</h4> <ul class="muted" style="margin:0;padding-left:18px"> <li>Cloud: Azure, AWS, Microsoft 365, Azure AD, Google Workspace</li> <li>Virtualization: VMware vSphere, vRA, NSX</li> <li>DevOps: Terraform, Jenkins, Docker, Kubernetes</li> <li>Monitoring: Site24x7, Datadog</li> </ul> </div> <div class="card" style="background:rgba(255,255,255,0.02)"> <h4 style="margin:0 0 8px">Systems & Operations</h4> <ul class="muted" style="margin:0;padding-left:18px"> <li>Scripting: PowerShell, PowerCLI, Python</li> <li>OS: Windows Server, Linux (RHEL/Ubuntu), macOS</li> <li>Services: AD, DNS, DHCP, Exchange</li> <li>Endpoint: Intune, SCCM, Defender, Sophos</li> <li>Backup/DR: Veeam, Acronis, NinjaOne</li> </ul> </div> </div> </section>
-
-
-    <!-- EXPERIENCE -->
-    <section class="card reveal" id="experience">
-      <h3 style="margin:0 0 8px">Professional Experience</h3>
-      <div class="timeline">
-        <div class="job">
-          <h4>Bonial International GmbH — Berlin</h4>
-          <div class="meta">
-            <span>Aug 2022 – Present</span><span>•</span><span>Senior System Administrator</span>
-          </div>
-        </div>
-
-        <div class="job">
-          <h4>CSI Interfusion Inc — Bangalore, India</h4>
-          <div class="meta">
-            <span>May 2020 – Mar 2022</span><span>•</span><span>Senior System Engineer (Client: Microsoft)</span>
-          </div>
-        </div>
-
-        <div class="job">
-          <h4>Adventus Singapore Pte Ltd — Singapore</h4>
-          <div class="meta">
-            <span>Aug 2018 – Jan 2020</span><span>•</span><span>IT Systems Engineer</span>
-          </div>
-        </div>
-
-        <div class="job">
-          <h4>Cognizant Technology Solutions — Bangalore, India</h4>
-          <div class="meta">
-            <span>May 2016 – Aug 2018</span><span>•</span><span>Senior Systems Engineer</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CERTIFICATES -->
-    <section class="card reveal" id="certificates">
-      <h3 style="margin:0 0 6px">Certificates</h3>
-
-      <div class="toolbar">
-        <div class="filters">
-          <button class="filter active" data-filter="all">All</button>
-          <button class="filter" data-filter="cloud">Cloud</button>
-          <button class="filter" data-filter="security">Security</button>
-          <button class="filter" data-filter="virtualization">Virtualization</button>
-        </div>
-        <div class="search">
-          <input id="certSearch" type="search" placeholder="Search certificates (Azure, AWS, VMware…)" />
-        </div>
-      </div>
-
-      <div class="cert-grid" id="certGrid"></div>
-      <div class="muted" id="certEmpty" style="display:none;margin-top:12px">No certificates match your filters.</div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section class="card reveal" id="education">
-      <h3 style="margin:0 0 8px">Education</h3>
-      <div class="card" style="background:rgba(255,255,255,0.02)">
-        <div style="display:grid;gap:10px">
-          <div>
-            <div style="font-weight:800">B.Tech (ECE) — Pondicherry University</div>
-            <div class="muted">Manakula Vinayagar Institute of Technology · 2015</div>
-          </div>
-          <div>
-            <div style="font-weight:800">HSC — State Board</div>
-            <div class="muted">Seventh Day Adventist Higher Secondary School · 2011</div>
-          </div>
-          <div>
-            <div style="font-weight:800">SSLC — State Board</div>
-            <div class="muted">Seventh Day Adventist Higher Secondary School · 2009</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="card reveal" id="contact">
-      <h3 style="margin:0 0 8px">Contact</h3>
-      <div class="muted" style="margin-bottom:12px">
-        Berlin, Germany · <a href="mailto:peterleonardmit@gmail.com">peterleonardmit@gmail.com</a> · +49-17686499345
-      </div>
-
-        <div class="card" style="background:rgba(255,255,255,0.02)">
-          <h4 style="margin:0 0 8px">Message me</h4>
-          <form id="contactForm" onsubmit="submitForm(event)">
-            <input type="text" name="name" placeholder="Your name" required />
-            <input type="email" name="email" placeholder="Your email" required />
-            <input type="text" name="subject" placeholder="Subject" />
-            <textarea name="message" placeholder="Message" required></textarea>
-
-            <div style="display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-top:8px">
-              <button class="btn" type="submit">Send message</button>
-            </div>
-            <div id="formStatus" class="muted" style="margin-top:8px;display:none"></div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <footer class="reveal">
-      <div>Made with ☕ · <span class="muted">GitHub Pages</span></div>
-      <div>© <span id="year"></span> Peter Leonard</div>
-    </footer>
-  </div>
-
-  <!-- MODAL -->
-  <div id="modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="modal" role="document">
-      <button class="close" aria-label="Close modal" onclick="closeModal()">✕</button>
-      <h3 id="modalTitle"></h3>
-      <p id="modalDesc" class="muted" style="margin-top:8px"></p>
-      <div id="modalLinks" style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap"></div>
     </div>
-  </div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    <nav>
+      <a href="#home" class="active">Home</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    // Typing animation (IT Ops phrases)
-    const typingEl = document.getElementById('typing');
-    const phrases = [
-      'Production Operations',
-      'Incident Response & Recovery',
-      'Operational Reliability',
-      'Reducing Operational Toil'
-    ];
-    let pi = 0, ci = 0, forward = true;
-    function tick(){
-      const p = phrases[pi];
-      typingEl.textContent = p.slice(0, ci);
-      if(forward) { ci++; if(ci > p.length){ forward = false; setTimeout(tick, 900); return; } }
-      else { ci--; if(ci < 0){ forward = true; pi = (pi+1)%phrases.length; } }
-      setTimeout(tick, forward ? 55 : 30);
-    }
-    tick();
+  <section class="hero" id="home">
+    <div>
+      <h1>Hi — I'm Peter. <span class="typing" id="typing"></span></h1>
+      <p class="muted">
+        Senior Systems Administrator focused on IT Operations, automation, and reliable infrastructure.
+      </p>
 
-    // Reveal on scroll
-    const observer = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-    }, {threshold: 0.12});
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      <div class="skills">
+        <span class="skill">IT Operations</span>
+        <span class="skill">Incident Response</span>
+        <span class="skill">Automation</span>
+        <span class="skill">Cloud</span>
+        <span class="skill">Reliability</span>
+      </div>
+    </div>
 
-    // Active nav highlight (scroll)
-    const navLinks = [...document.querySelectorAll('nav a[data-nav]')];
-    const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-    const navObserver = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          navLinks.forEach(a => a.classList.remove('active'));
-          const active = navLinks.find(a => a.getAttribute('href') === '#' + entry.target.id);
-          if(active) active.classList.add('active');
-        }
-      });
-    }, {rootMargin: "-45% 0px -50% 0px", threshold: 0.01});
-    sections.forEach(s => navObserver.observe(s));
+    <aside class="card">
+      <strong>Berlin, Germany</strong>
+      <div class="muted">peterleonardmit@gmail.com</div>
+      <div class="muted">+49 176 864 99345</div>
+    </aside>
+  </section>
 
-    // Modal helpers
-    function openModal(data){
-      document.getElementById('modalTitle').textContent = data.title || '';
-      document.getElementById('modalDesc').textContent = data.desc || '';
-      const links = document.getElementById('modalLinks');
-      links.innerHTML = '';
-      (data.links||[]).forEach(l=>{
-        const el = document.createElement('a');
-        el.href = l.url;
-        el.target = '_blank';
-        el.rel = 'noopener noreferrer';
-        el.className = l.primary ? 'btn' : 'btn ghost';
-        el.textContent = l.label;
-        links.appendChild(el);
-      });
-      const mb = document.getElementById('modal');
-      mb.classList.add('open');
-      mb.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal(){
-      const mb = document.getElementById('modal');
-      mb.classList.remove('open');
-      mb.setAttribute('aria-hidden','true');
-      document.body.style.overflow = '';
-    }
-    document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') closeModal(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
-    window.closeModal = closeModal;
+  <section class="card" id="skills">
+    <h3>Core competencies</h3>
+    <ul class="muted">
+      <li>Cloud & Infrastructure Operations</li>
+      <li>Automation & Scripting</li>
+      <li>Incident Response & Reliability</li>
+      <li>Monitoring & Observability</li>
+    </ul>
+  </section>
 
-    // Projects -> modal
-    document.querySelectorAll('.project').forEach(el=>{
-      el.addEventListener('click', ()=>{
-        const data = JSON.parse(el.getAttribute('data-project'));
-        openModal(data);
-      });
-    });
+  <section class="card" id="experience">
+    <h3>Experience</h3>
+    <div class="timeline">
+      <div class="job">Bonial International GmbH — Senior Systems Administrator</div>
+      <div class="job">CSI Interfusion (Microsoft) — Senior System Engineer</div>
+      <div class="job">Adventus Singapore — IT Systems Engineer</div>
+      <div class="job">Cognizant — Senior Systems Engineer</div>
+    </div>
+  </section>
 
-    // Certificates data (edit links + badges anytime)
-    const certs = [
-      { title:"Microsoft Certified: Azure Fundamentals (AZ-900)", org:"Microsoft", category:["cloud"], tags:["Azure","Fundamentals"], badge:"assets/badges/az-900.jpg", desc:"Azure Fundamentals certification.", links:[] },
-      { title:"AWS Certified Cloud Practitioner", org:"Amazon Web Services", category:["cloud"], tags:["AWS","Fundamentals"], badge:"assets/badges/aws-cloud-practitioner.png", desc:"AWS Cloud Practitioner certification.", links:[] },
-      { title:"Microsoft 365 Certified: Fundamentals", org:"Microsoft", category:["cloud"], tags:["M365","Fundamentals"], badge:"assets/badges/m365-fundamentals.png", desc:"Microsoft 365 Fundamentals certification.", links:[] },
-      { title:"Microsoft Certified: Security, Compliance & Identity Fundamentals", org:"Microsoft", category:["security"], tags:["Security","Compliance","Identity"], badge:"assets/badges/sc-900.png", desc:"Security, compliance and identity fundamentals.", links:[] },
-      { title:"VMware Certified Professional 2019 – Cloud & Management Automation", org:"VMware", category:["virtualization"], tags:["VMware","Automation"], badge:"assets/badges/vmware-vcp.png", desc:"VMware VCP in cloud & management automation.", links:[] }
-    ];
+  <section class="card" id="contact">
+    <h3>Contact</h3>
+    <p class="muted">Let’s talk IT Ops, automation, and reliability.</p>
+    <a class="btn" href="mailto:peterleonardmit@gmail.com">Email me</a>
+  </section>
 
-    const certGrid = document.getElementById('certGrid');
-    const certEmpty = document.getElementById('certEmpty');
-    const certSearch = document.getElementById('certSearch');
-    let activeFilter = 'all';
+  <footer>
+    <div>Made with ☕</div>
+    <div>© <span id="year"></span> Peter Leonard</div>
+  </footer>
+</div>
 
-    function renderCerts(){
-      const q = (certSearch.value || '').toLowerCase().trim();
-      const filtered = certs.filter(c=>{
-        const matchesFilter = activeFilter === 'all' || (c.category || []).includes(activeFilter);
-        const hay = (c.title + " " + c.org + " " + (c.tags||[]).join(" ") + " " + (c.desc||"")).toLowerCase();
-        const matchesQuery = !q || hay.includes(q);
-        return matchesFilter && matchesQuery;
-      });
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-      certGrid.innerHTML = "";
-      certEmpty.style.display = filtered.length ? "none" : "block";
+  const phrases = [
+    'Production Operations',
+    'Incident Response & Recovery',
+    'Operational Reliability',
+    'Reducing Operational Toil'
+  ];
+  let i=0,j=0,dir=1;
+  const el=document.getElementById('typing');
 
-      filtered.forEach(c=>{
-        const el = document.createElement('div');
-        el.className = 'cert';
-        el.tabIndex = 0;
-        el.setAttribute('role','button');
-
-        el.innerHTML = `
-          <div class="row">
-            <div class="badge" aria-hidden="true">
-              ${c.badge ? `<img src="${c.badge}" alt="">` : `<span class="muted" style="font-weight:800">★</span>`}
-            </div>
-            <div>
-              <div class="title">${c.title}</div>
-              <div class="muted">${c.org}</div>
-            </div>
-          </div>
-          <div class="tags">
-            ${(c.tags||[]).map(t=>`<span class="tag">${t}</span>`).join("")}
-          </div>
-        `;
-
-        const links = (c.links && c.links.length)
-          ? c.links
-          : [{label:"No proof link yet", url:"#", primary:false}];
-
-        const modalData = { title: c.title, desc: c.desc || '', links };
-
-        el.addEventListener('click', ()=>openModal(modalData));
-        el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') openModal(modalData); });
-        certGrid.appendChild(el);
-      });
-    }
-
-    document.querySelectorAll('[data-filter]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        activeFilter = btn.getAttribute('data-filter');
-        renderCerts();
-      });
-    });
-
-    certSearch.addEventListener('input', renderCerts);
-    renderCerts();
-
-    // Theme toggle
-    const themeToggle = document.getElementById('themeToggle');
-    if(themeToggle){
-      themeToggle.addEventListener('click', (e)=>{
-        e.preventDefault();
-        document.documentElement.classList.toggle('light');
-        document.body.classList.toggle('light');
-        const pressed = document.documentElement.classList.contains('light');
-        themeToggle.setAttribute('aria-pressed', String(pressed));
-      });
-    }
-
-    // Contact: mailto fallback
-    function submitForm(e){
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      const status = document.getElementById('formStatus');
-      status.style.display = 'block';
-      status.textContent = 'Opening mail client…';
-
-      const name = encodeURIComponent(data.get('name') || '');
-      const email = encodeURIComponent(data.get('email') || '');
-      const subject = encodeURIComponent(data.get('subject') || 'Website contact');
-      const message = encodeURIComponent(data.get('message') || '');
-      window.location.href =
-        `mailto:peterleonardmit@gmail.com?subject=${subject}&body=From:%20${name}%20(${email})%0A%0A${message}`;
-    }
-  </script>
+  function loop(){
+    el.textContent = phrases[i].slice(0,j);
+    if(dir){ j++; if(j>phrases[i].length){ dir=0; setTimeout(loop,800); return; } }
+    else{ j--; if(j<0){ dir=1; i=(i+1)%phrases.length; } }
+    setTimeout(loop, dir?60:30);
+  }
+  loop();
+</script>
 </body>
 </html>
