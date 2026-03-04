@@ -186,7 +186,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:22px 5%;display:flex;j
     <div class="ibt ibt-3">AND ON AGAIN?</div>
   </div>
   <div class="intro-center">
-    <canvas id="ninjaCanvas" width="120" height="120" style="border-radius:50%;"></canvas>
+    <canvas id="ninjaCanvas" width="140" height="150" style="border-radius:50%;"></canvas>
     <button class="start-btn" id="startBtn" onclick="launchPortfolio()">ENTER</button>
   </div>
 </div>
@@ -319,8 +319,9 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:22px 5%;display:flex;j
 (function(){
   const c = document.getElementById('ninjaCanvas');
   if(!c) return;
+  c.width=140; c.height=150;
   const ctx = c.getContext('2d');
-  const W = 120, H = 120;
+  const W = 140, H = 150;
   let blinkT = 0, blinkDur = 0, nextBlink = 120;
   let frame = 0;
   // random phrases cycling
@@ -336,23 +337,22 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:22px 5%;display:flex;j
     ctx.clearRect(0,0,W,H);
 
     // subtle glow bg
-    const grd = ctx.createRadialGradient(60,60,10,60,60,60);
+    const grd = ctx.createRadialGradient(70,75,10,70,75,65);
     grd.addColorStop(0,'rgba(108,99,255,0.25)');
     grd.addColorStop(1,'rgba(5,5,5,0)');
     ctx.fillStyle = grd;
-    ctx.beginPath(); ctx.arc(60,60,60,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(70,80,62,0,Math.PI*2); ctx.fill();
 
     // head circle
-    ctx.beginPath(); ctx.arc(60,60,42,0,Math.PI*2);
+    ctx.beginPath(); ctx.arc(70,78,44,0,Math.PI*2);
     ctx.fillStyle='#0a0a0f'; ctx.fill();
     ctx.strokeStyle='rgba(108,99,255,.7)'; ctx.lineWidth=2; ctx.stroke();
 
-    // mask band (ninja bandana)
+    // mask band
     ctx.fillStyle='#1a1a2e';
-    ctx.fillRect(18,52,84,22);
-    // bandana border
+    ctx.fillRect(26,68,88,22);
     ctx.strokeStyle='rgba(108,99,255,.4)'; ctx.lineWidth=1;
-    ctx.strokeRect(18,52,84,22);
+    ctx.strokeRect(26,68,88,22);
 
     // blink state
     const blink = blinkT > 0 && blinkT < blinkDur;
@@ -361,50 +361,47 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:22px 5%;display:flex;j
 
     // left eye
     ctx.save();
-    ctx.beginPath(); ctx.ellipse(43,63,7,eyeH,0,0,Math.PI*2);
+    ctx.beginPath(); ctx.ellipse(50,79,7,eyeH,0,0,Math.PI*2);
     ctx.fillStyle='#00d4ff'; ctx.fill();
-    // pupil
     if(!blink){
-      ctx.beginPath(); ctx.ellipse(43,63,3,4,0,0,Math.PI*2);
+      ctx.beginPath(); ctx.ellipse(50,79,3,4,0,0,Math.PI*2);
       ctx.fillStyle='#050510'; ctx.fill();
-      // glint
-      ctx.beginPath(); ctx.arc(45,61,1.5,0,Math.PI*2);
+      ctx.beginPath(); ctx.arc(52,77,1.5,0,Math.PI*2);
       ctx.fillStyle='white'; ctx.fill();
     }
     ctx.restore();
 
     // right eye
     ctx.save();
-    ctx.beginPath(); ctx.ellipse(77,63,7,eyeH,0,0,Math.PI*2);
+    ctx.beginPath(); ctx.ellipse(90,79,7,eyeH,0,0,Math.PI*2);
     ctx.fillStyle='#00d4ff'; ctx.fill();
     if(!blink){
-      ctx.beginPath(); ctx.ellipse(77,63,3,4,0,0,Math.PI*2);
+      ctx.beginPath(); ctx.ellipse(90,79,3,4,0,0,Math.PI*2);
       ctx.fillStyle='#050510'; ctx.fill();
-      ctx.beginPath(); ctx.arc(79,61,1.5,0,Math.PI*2);
+      ctx.beginPath(); ctx.arc(92,77,1.5,0,Math.PI*2);
       ctx.fillStyle='white'; ctx.fill();
     }
     ctx.restore();
 
-    // sweat drop (when phrase changes — "stressed")
+    // sweat drop
     if(phraseTimer < 15){
-      ctx.beginPath();
-      ctx.arc(95,40,4,0,Math.PI*2);
+      ctx.beginPath(); ctx.arc(108,50,4,0,Math.PI*2);
       ctx.fillStyle='rgba(0,212,255,.7)'; ctx.fill();
       ctx.beginPath();
-      ctx.moveTo(95,44); ctx.lineTo(92,52); ctx.lineTo(98,52); ctx.closePath();
+      ctx.moveTo(108,54); ctx.lineTo(105,62); ctx.lineTo(111,62); ctx.closePath();
       ctx.fillStyle='rgba(0,212,255,.5)'; ctx.fill();
     }
 
-    // floating phrase above head
+    // floating phrase — now at top with enough room
     phraseTimer++;
     if(phraseTimer > 90){ phraseTimer=0; phraseIdx=(phraseIdx+1)%phrases.length; }
     const alpha = phraseTimer < 15 ? phraseTimer/15 : phraseTimer > 75 ? 1-(phraseTimer-75)/15 : 1;
     ctx.save();
-    ctx.globalAlpha = alpha * 0.85;
-    ctx.font = 'bold 11px JetBrains Mono, monospace';
-    ctx.fillStyle = '#6c63ff';
+    ctx.globalAlpha = alpha * 0.9;
+    ctx.font = 'bold 12px "JetBrains Mono", monospace';
+    ctx.fillStyle = '#00d4ff';
     ctx.textAlign = 'center';
-    ctx.fillText(phrases[phraseIdx], 60, 14);
+    ctx.fillText(phrases[phraseIdx], 70, 20);
     ctx.restore();
 
     // bobbing animation
