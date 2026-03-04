@@ -451,17 +451,22 @@ window.addEventListener('load',()=>{
 function launchPortfolio(){
   const intro=document.getElementById('intro');
   const portfolio=document.getElementById('portfolio');
-  // flash effect
   intro.style.transition='opacity .6s ease, transform .6s ease';
   intro.classList.add('hide');
   setTimeout(()=>{
     intro.style.display='none';
+    window.scrollTo({top:0,left:0,behavior:'instant'});
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
     portfolio.style.display='block';
-    setTimeout(()=>portfolio.classList.add('show'),50);
-    initBG();
-    initScrollReveal();
-    initTooltips();
-    initCursor();
+    setTimeout(()=>{
+      window.scrollTo({top:0,left:0,behavior:'instant'});
+      portfolio.classList.add('show');
+      initBG();
+      initScrollReveal();
+      initTooltips();
+      initCursor();
+    },50);
   },700);
 }
 
