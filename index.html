@@ -167,7 +167,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:22px 5%;display:flex;j
 <section class="hero" id="home" style="position:relative;">
   <div class="hero-container"><div class="hero-left">
     <div class="badge">Available for opportunities</div>
-    <h1>IT Operations<br><span class="hl" data-tip="reality" data-tip-text="Translation: I keep the servers alive at 2am so you can sleep 😅">Admin/Engineer</span><br>& <span data-tip="funny" data-tip-text="Fancy word for 'I draw boxes in the cloud and pray they don't fall' ☁️🤞">Cloud Architect</span></h1>
+    <h1>IT Operations<br><span class="hl" data-tip="reality" data-tip-text="Translation: I keep the servers alive at 2am so you can sleep 😅">Engineer</span><br>& <span data-tip="funny" data-tip-text="Fancy word for 'I draw boxes in the cloud and pray they don't fall' ☁️🤞">Cloud Architect</span></h1>
     <p class="hero-sub">Building <strong data-tip="reality" data-tip-text="AKA: fixing things before anyone notices they broke 🔧">resilient infrastructure</strong>, <strong data-tip="funny" data-tip-text="PowerShell at midnight > coffee ☕ ... debatable">automating the complex</strong>, and leading teams toward <strong data-tip="reality" data-tip-text="On-call rotations, war rooms & post-mortems at 3am 🚨">operational excellence</strong> — from Berlin to the cloud.</p>
     <div class="btns"><a href="#projects" class="btn1">View My Work</a><a href="#contact" class="btn2">Get In Touch</a></div>
   </div></div>
@@ -175,7 +175,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:22px 5%;display:flex;j
 </section>
 
 <section id="about">
-  <div class="sec-head"><div class="stag">// 01. about</div><h2 class="stitle">The Administrator Behind the Systems</h2><div class="sdiv"></div></div>
+  <div class="sec-head"><div class="stag">// 01. about</div><h2 class="stitle">The Engineer Behind the Systems</h2><div class="sdiv"></div></div>
   <div class="about-grid">
     <div class="about-vis reveal">
       <div class="asc glass"><div class="asc-ico">🌍</div><div><div class="asc-num">9+</div><div class="asc-lbl">Years across India, Singapore & Germany</div></div></div>
@@ -500,8 +500,239 @@ function initCursor(){var cur=document.getElementById('cur'),cur2=document.getEl
 // 9. TOOLTIPS
 function initTooltips(){var tooltip=document.getElementById('tooltip'),tipLabel=document.getElementById('tip-label'),tipText=document.getElementById('tip-text'),cur2=document.getElementById('cur2');document.querySelectorAll('[data-tip-text]').forEach(function(el){el.style.cursor='none';el.style.borderBottom='1px dashed rgba(108,99,255,.5)';el.style.transition='color .2s';el.addEventListener('mouseenter',function(){tipLabel.textContent=el.dataset.tip==='funny'?'😄 fun fact':'💡 reality check';tipText.textContent=el.dataset.tipText;tooltip.classList.add('show');el.style.color='var(--c2)';cur2.style.width='80px';cur2.style.height='80px';cur2.style.borderColor='rgba(0,212,255,1)';cur2.style.boxShadow='0 0 30px rgba(0,212,255,.7)';});el.addEventListener('mouseleave',function(){tooltip.classList.remove('show');el.style.color='';cur2.style.width='40px';cur2.style.height='40px';cur2.style.borderColor='rgba(108,99,255,.8)';cur2.style.boxShadow='0 0 12px rgba(108,99,255,.4)';});});document.querySelectorAll('.tr[data-tip]').forEach(function(el){el.addEventListener('mouseenter',function(){tipLabel.textContent='😂 real talk';tipText.textContent=el.dataset.tip;tooltip.classList.add('show');cur2.style.width='80px';cur2.style.height='80px';cur2.style.borderColor='rgba(0,255,179,.9)';cur2.style.boxShadow='0 0 30px rgba(0,255,179,.5)';});el.addEventListener('mouseleave',function(){tooltip.classList.remove('show');cur2.style.width='40px';cur2.style.height='40px';cur2.style.borderColor='rgba(108,99,255,.8)';cur2.style.boxShadow='0 0 12px rgba(108,99,255,.4)';});});document.addEventListener('mousemove',function(e){tooltip.style.left=e.clientX+'px';tooltip.style.top=e.clientY+'px';});}
 
-// 10. 3D BG
-function initBG(){var canvas=document.getElementById('bgCanvas');var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);renderer.setClearColor(0x000000,0);var scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,1000);camera.position.set(0,0,30);var N=4000,pos=new Float32Array(N*3),col=new Float32Array(N*3),pal=[[.42,.39,1],[0,.83,1],[1,.42,.62],[0,1,.7]];for(var i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*180;pos[i*3+1]=(Math.random()-.5)*180;pos[i*3+2]=(Math.random()-.5)*90;var c=pal[i%4];col[i*3]=c[0];col[i*3+1]=c[1];col[i*3+2]=c[2];}var pGeo=new THREE.BufferGeometry();pGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));pGeo.setAttribute('color',new THREE.BufferAttribute(col,3));scene.add(new THREE.Points(pGeo,new THREE.PointsMaterial({size:.2,vertexColors:true,transparent:true,opacity:.65})));var boxes=[];for(var i=0;i<6;i++){var m=new THREE.Mesh(new THREE.BoxGeometry(8,1.2,5),new THREE.MeshBasicMaterial({color:0x6c63ff,wireframe:true,transparent:true,opacity:.15}));m.position.set(20,i*2.2-5,-5);scene.add(m);boxes.push(m);}[[5,5,5,-20,4,-8,0x00d4ff],[3,3,3,-15,10,-12,0x00d4ff],[6,2,4,-22,-2,-6,0x00ffb3]].forEach(function(a){var m=new THREE.Mesh(new THREE.BoxGeometry(a[0],a[1],a[2]),new THREE.MeshBasicMaterial({color:a[6],wireframe:true,transparent:true,opacity:.15}));m.position.set(a[3],a[4],a[5]);scene.add(m);boxes.push(m);});var t1=new THREE.Mesh(new THREE.TorusGeometry(14,.06,8,80),new THREE.MeshBasicMaterial({color:0x6c63ff,transparent:true,opacity:.12}));t1.rotation.x=Math.PI/3;scene.add(t1);var t2=new THREE.Mesh(new THREE.TorusGeometry(20,.04,8,80),new THREE.MeshBasicMaterial({color:0x00d4ff,transparent:true,opacity:.08}));t2.rotation.x=Math.PI/5;t2.rotation.y=Math.PI/4;scene.add(t2);var ico=new THREE.Mesh(new THREE.IcosahedronGeometry(4,1),new THREE.MeshBasicMaterial({color:0x6c63ff,wireframe:true,transparent:true,opacity:.18}));ico.position.set(0,0,-12);scene.add(ico);[[20,5,-5,-20,4,-8,0x00d4ff],[20,3,-5,0,0,-12,0x6c63ff],[-20,4,-8,0,0,-12,0x6c63ff]].forEach(function(a){var g=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(a[0],a[1],a[2]),new THREE.Vector3(a[3],a[4],a[5])]);scene.add(new THREE.Line(g,new THREE.LineBasicMaterial({color:a[6],transparent:true,opacity:.1})));});var tScroll=0,mouseX=0,mouseY=0,scrollY=0;window.addEventListener('scroll',function(){tScroll=window.scrollY;});document.addEventListener('mousemove',function(e){mouseX=(e.clientX/innerWidth-.5)*2;mouseY=-(e.clientY/innerHeight-.5)*2;});window.addEventListener('resize',function(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});var clk=new THREE.Clock();(function loop(){requestAnimationFrame(loop);var t=clk.getElapsedTime();scrollY+=(tScroll-scrollY)*.05;camera.position.y=-scrollY*.016+mouseY*1.2;camera.position.x=mouseX*1.5;camera.lookAt(mouseX*.5,-scrollY*.01,0);ico.rotation.x=t*.18;ico.rotation.y=t*.24;t1.rotation.z=t*.07;t2.rotation.z=-t*.04;t2.rotation.x=t*.03+Math.PI/5;boxes.forEach(function(b,i){b.rotation.y=t*.07+i*.3;b.rotation.x=Math.sin(t*.05+i)*.07;});var pa=pGeo.attributes.position.array;for(var i=0;i<N;i++)pa[i*3+1]+=Math.sin(t*.3+i)*.001;pGeo.attributes.position.needsUpdate=true;ico.material.opacity=.1+Math.sin(t*.5)*.07;renderer.render(scene,camera);})();}
+// 10. MEGA IT-OPS BG — terminal rain + circuit board + datacenter + packet storm
+function initBG(){
+  var canvas=document.getElementById('bgCanvas');
+  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(innerWidth,innerHeight);
+  renderer.setClearColor(0x000000,0);
+  var scene=new THREE.Scene();
+  var camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,1000);
+  camera.position.set(0,0,40);
+
+  // ══ 1. TERMINAL RAIN — vertical falling dot streams ══
+  var rainCount=400;
+  var rainPos=new Float32Array(rainCount*3);
+  var rainCol=new Float32Array(rainCount*3);
+  var rainSpeeds=new Float32Array(rainCount);
+  var rainOpacity=new Float32Array(rainCount);
+  for(var i=0;i<rainCount;i++){
+    rainPos[i*3]=(Math.random()-.5)*160;
+    rainPos[i*3+1]=(Math.random()-.5)*100;
+    rainPos[i*3+2]=(Math.random()-.5)*40-20;
+    rainSpeeds[i]=0.02+Math.random()*0.05;
+    rainOpacity[i]=Math.random();
+    var g=.4+Math.random()*.6;
+    rainCol[i*3]=0; rainCol[i*3+1]=g; rainCol[i*3+2]=g*.4;
+  }
+  var rainGeo=new THREE.BufferGeometry();
+  rainGeo.setAttribute('position',new THREE.BufferAttribute(rainPos,3));
+  rainGeo.setAttribute('color',new THREE.BufferAttribute(rainCol,3));
+  scene.add(new THREE.Points(rainGeo,new THREE.PointsMaterial({size:.28,vertexColors:true,transparent:true,opacity:.55})));
+
+  // ══ 2. CIRCUIT BOARD — horizontal PCB traces ══
+  var traceColors=[0x00ffb3,0x6c63ff,0x00d4ff];
+  var traces=[];
+  for(var i=0;i<28;i++){
+    var sx=(Math.random()-.5)*80, sy=(Math.random()-.5)*60, sz=-15-Math.random()*20;
+    var pts=[];
+    var cx=sx,cy=sy;
+    for(var s=0;s<6;s++){
+      pts.push(new THREE.Vector3(cx,cy,sz));
+      if(Math.random()>.5){ cx+=(Math.random()>.5?1:-1)*(4+Math.random()*8); }
+      else { cy+=(Math.random()>.5?1:-1)*(4+Math.random()*8); }
+    }
+    var geo=new THREE.BufferGeometry().setFromPoints(pts);
+    var col=traceColors[i%3];
+    var line=new THREE.Line(geo,new THREE.LineBasicMaterial({color:col,transparent:true,opacity:.13+Math.random()*.1}));
+    scene.add(line);
+    // via dots at corners
+    pts.forEach(function(p,pi){
+      if(pi%2===0){
+        var vg=new THREE.SphereGeometry(.18,5,5);
+        var vm=new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.6});
+        var v=new THREE.Mesh(vg,vm);
+        v.position.copy(p);
+        scene.add(v);
+      }
+    });
+    // chip blocks at random points
+    if(Math.random()>.5){
+      var cp=pts[Math.floor(pts.length/2)];
+      var cg=new THREE.BoxGeometry(1.6,.9,.3);
+      var cm=new THREE.MeshBasicMaterial({color:col,wireframe:true,transparent:true,opacity:.25});
+      var chip=new THREE.Mesh(cg,cm);
+      chip.position.copy(cp);
+      scene.add(chip);
+      traces.push({chip:chip,phase:Math.random()*Math.PI*2});
+    }
+  }
+
+  // ══ 3. DATACENTER ROWS — server racks receding into distance ══
+  var racks=[];
+  var rowZ=-10;
+  for(var row=0;row<5;row++){
+    for(var side=-1;side<=1;side+=2){
+      var grp=new THREE.Group();
+      // rack cabinet
+      var rg=new THREE.BoxGeometry(3.5,12,3);
+      var rm=new THREE.MeshBasicMaterial({color:0x0f172a,wireframe:true,transparent:true,opacity:.22});
+      grp.add(new THREE.Mesh(rg,rm));
+      // 1U blades
+      for(var u=0;u<7;u++){
+        var bg2=new THREE.BoxGeometry(3.0,.55,2.6);
+        var bm=new THREE.MeshBasicMaterial({color:u%3===0?0x6c63ff:0x1e293b,wireframe:true,transparent:true,opacity:.18});
+        var blade=new THREE.Mesh(bg2,bm);
+        blade.position.y=-4.2+u*1.3;
+        grp.add(blade);
+        // LEDs
+        var ledCol=Math.random()>.25?0x00ffb3:Math.random()>.5?0xf59e0b:0xff3b3b;
+        var lg=new THREE.SphereGeometry(.07,4,4);
+        var lm=new THREE.MeshBasicMaterial({color:ledCol,transparent:true,opacity:.95});
+        var led=new THREE.Mesh(lg,lm);
+        led.position.set(1.3,-4.2+u*1.3,1.1);
+        grp.add(led);
+        racks.push({led:led,col:ledCol,phase:Math.random()*Math.PI*2});
+      }
+      // cable bundle at back
+      var cg2=new THREE.CylinderGeometry(.1,.1,11,5);
+      var cm2=new THREE.MeshBasicMaterial({color:0x00d4ff,wireframe:true,transparent:true,opacity:.12});
+      var cable=new THREE.Mesh(cg2,cm2);
+      cable.position.set(-1.4,0,-1.2);
+      grp.add(cable);
+
+      grp.position.set(side*16, 0, rowZ-row*14);
+      grp.rotation.y=side*0.08;
+      scene.add(grp);
+    }
+  }
+
+  // ══ 4. NETWORK NODES + EDGES ══
+  var nodePts=[
+    [0,2,-8],[14,6,-12],[-14,6,-12],[14,-6,-12],[-14,-6,-12],
+    [0,14,-18],[0,-14,-18],[22,0,-16],[-22,0,-16]
+  ];
+  var nodeObjs=[];
+  var edgeDefs=[[0,1],[0,2],[0,3],[0,4],[1,5],[2,5],[3,6],[4,6],[1,7],[3,7],[2,8],[4,8],[5,6],[7,8],[0,5],[0,6]];
+  nodePts.forEach(function(p,i){
+    var shapes=[new THREE.OctahedronGeometry(1.1,0),new THREE.IcosahedronGeometry(.9,0),new THREE.BoxGeometry(1,.8,.5)];
+    var cols=[0x6c63ff,0x00d4ff,0x00ffb3,0xa78bfa,0xf59e0b];
+    var geo=shapes[i%shapes.length];
+    var col=cols[i%cols.length];
+    var m=new THREE.MeshBasicMaterial({color:col,wireframe:true,transparent:true,opacity:.65});
+    var mesh=new THREE.Mesh(geo,m);
+    mesh.position.set(p[0],p[1],p[2]);
+    scene.add(mesh);
+    var dg=new THREE.SphereGeometry(.15,5,5);
+    var dm=new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.9});
+    var dot=new THREE.Mesh(dg,dm);
+    dot.position.set(p[0],p[1],p[2]);
+    scene.add(dot);
+    nodeObjs.push({mesh:mesh,dot:dot,base:p.slice(),phase:Math.random()*Math.PI*2,col:col});
+  });
+  edgeDefs.forEach(function(e){
+    var a=nodePts[e[0]],b=nodePts[e[1]];
+    var geo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(a[0],a[1],a[2]),new THREE.Vector3(b[0],b[1],b[2])]);
+    var col=[0x6c63ff,0x00d4ff,0x00ffb3][Math.floor(Math.random()*3)];
+    scene.add(new THREE.Line(geo,new THREE.LineBasicMaterial({color:col,transparent:true,opacity:.16})));
+  });
+
+  // ══ 5. PACKET STORM — hex data boxes flying through space ══
+  var pkts=[];
+  for(var i=0;i<40;i++){
+    var pg=new THREE.BoxGeometry(.35,.2,.2);
+    var pc=[0x00ffb3,0x00d4ff,0x6c63ff,0xf59e0b,0xa78bfa][i%5];
+    var pm=new THREE.MeshBasicMaterial({color:pc,transparent:true,opacity:.75});
+    var pkt=new THREE.Mesh(pg,pm);
+    pkt.position.set((Math.random()-.5)*70,(Math.random()-.5)*50,(Math.random()-.5)*30-10);
+    scene.add(pkt);
+    pkts.push({mesh:pkt,vx:(Math.random()-.5)*.06,vy:(Math.random()-.5)*.04,vz:.03+Math.random()*.05,phase:Math.random()*Math.PI*2});
+  }
+
+  // ══ 6. PING RINGS ══
+  var rings=[];
+  for(var i=0;i<4;i++){
+    var rg=new THREE.RingGeometry(.05,1.2,28);
+    var rm=new THREE.MeshBasicMaterial({color:[0x00ffb3,0x00d4ff,0x6c63ff,0xa78bfa][i],transparent:true,opacity:0,side:THREE.DoubleSide});
+    var ring=new THREE.Mesh(rg,rm);
+    var src=nodePts[Math.floor(Math.random()*nodePts.length)];
+    ring.position.set(src[0],src[1],src[2]+.5);
+    ring.rotation.x=Math.PI/2;
+    scene.add(ring);
+    rings.push({mesh:ring,phase:i*(Math.PI/2),srcIdx:i%nodePts.length});
+  }
+
+  var tScroll=0,mouseX=0,mouseY=0,sY=0;
+  window.addEventListener('scroll',function(){tScroll=window.scrollY;});
+  document.addEventListener('mousemove',function(e){mouseX=(e.clientX/innerWidth-.5)*2;mouseY=-(e.clientY/innerHeight-.5)*2;});
+  window.addEventListener('resize',function(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+
+  var clk=new THREE.Clock();
+  (function loop(){
+    requestAnimationFrame(loop);
+    var t=clk.getElapsedTime();
+    sY+=(tScroll-sY)*.05;
+    camera.position.y=-sY*.012+mouseY*1.4;
+    camera.position.x=mouseX*1.8;
+    camera.lookAt(mouseX*.4,-sY*.008,0);
+
+    // terminal rain fall
+    var rp=rainGeo.attributes.position.array;
+    for(var i=0;i<rainCount;i++){
+      rp[i*3+1]-=rainSpeeds[i];
+      if(rp[i*3+1]<-50){ rp[i*3+1]=50; rp[i*3]=(Math.random()-.5)*160; }
+    }
+    rainGeo.attributes.position.needsUpdate=true;
+
+    // circuit chip pulse
+    traces.forEach(function(tr){
+      if(tr.chip){ tr.chip.rotation.z=Math.sin(t*.3+tr.phase)*.05; tr.chip.material.opacity=.15+Math.sin(t*1.2+tr.phase)*.1; }
+    });
+
+    // LED blink on racks
+    racks.forEach(function(r){
+      r.led.material.opacity=.5+Math.sin(t*2.5+r.phase)*.45;
+    });
+
+    // node float + pulse
+    nodeObjs.forEach(function(n){
+      n.mesh.rotation.x=t*.1+n.phase;
+      n.mesh.rotation.y=t*.15+n.phase;
+      n.mesh.position.y=n.base[1]+Math.sin(t*.35+n.phase)*.5;
+      n.mesh.material.opacity=.5+Math.sin(t*1.2+n.phase)*.18;
+      n.dot.material.opacity=.7+Math.sin(t*2+n.phase)*.3;
+    });
+
+    // packet storm drift + wrap
+    pkts.forEach(function(p){
+      p.mesh.position.x+=p.vx;
+      p.mesh.position.y+=p.vy;
+      p.mesh.position.z+=p.vz;
+      p.mesh.rotation.x=t*.4+p.phase;
+      p.mesh.rotation.y=t*.3+p.phase;
+      p.mesh.material.opacity=.5+Math.sin(t*1.5+p.phase)*.25;
+      if(p.mesh.position.z>25){p.mesh.position.z=-35;p.mesh.position.x=(Math.random()-.5)*70;p.mesh.position.y=(Math.random()-.5)*50;}
+      if(Math.abs(p.mesh.position.x)>40){p.vx*=-1;}
+      if(Math.abs(p.mesh.position.y)>30){p.vy*=-1;}
+    });
+
+    // ping rings expand
+    rings.forEach(function(r){
+      var prog=((t*.45+r.phase)%(Math.PI*2))/(Math.PI*2);
+      var s=1+prog*7;
+      r.mesh.scale.set(s,s,s);
+      r.mesh.material.opacity=Math.max(0,(1-prog)*.3);
+      if(prog>.97){
+        var src=nodePts[r.srcIdx];
+        r.mesh.position.set(src[0],src[1],src[2]+.5);
+        r.srcIdx=Math.floor(Math.random()*nodePts.length);
+      }
+    });
+
+    renderer.render(scene,camera);
+  })();
+}
 
 // 11. SCROLL REVEAL
 function initScrollReveal(){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');var fill=e.target.querySelector('.sk-fill');if(fill){var w=e.target.dataset.w||'0';setTimeout(function(){fill.style.width=w+'%';},100);}}});},{threshold:.1});document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});}
